@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509073300) do
+ActiveRecord::Schema.define(version: 20160509110118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160509073300) do
     t.text     "source"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -59,4 +60,9 @@ ActiveRecord::Schema.define(version: 20160509073300) do
     t.string   "password_digest"
   end
 
+  add_foreign_key "card_tags", "cards"
+  add_foreign_key "card_tags", "tags"
+  add_foreign_key "cards", "users"
+  add_foreign_key "country_cards", "cards"
+  add_foreign_key "country_cards", "countries"
 end
