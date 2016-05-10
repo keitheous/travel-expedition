@@ -1,15 +1,19 @@
 <header class="profile_header">
-  <div class="profile_image">
-    <img src="" alt="">
-  </div>
-  <p><div class="username"><%= @user.name%></div></p>
+
+  <a href="/profile/edit?id=<%= @user.id%>">
+    <div class="profile_image">
+      <img src="<%= @user.image_url%>" alt="">
+    </div>
+  </a>
+
+  <div class="username"><%= @user.name%></div>
   <a class="add_card_btn" href="/new">ADD CARD</a>
 </header>
 
 <div class="container">
 
   <% @countries.each do |country| %>
-    <a href="/board?user_id=<%= @user.id%>&country_id=<%= country.id%>">
+    <a href="/board?country_id=<%= country.id%>">
       <div class="card">
         <div><%= country.name%></div>
         <img src="" alt="">

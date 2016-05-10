@@ -1,0 +1,13 @@
+<form action="/profile/update?id=<%=@user.id%>" method="post">
+  <input type="hidden" value="put" name="_method">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <label for="">User name</label>
+  <input type="text" name="name" placeholder="<%=@user.name%>">
+  <label for="">email</label>
+  <input type="text" name="email" placeholder="<%= @user.email%>">
+  <label for="">which country do you live</label>
+  <input type="text" name="default_currency" placeholder="<%= @user.default_currency%>">
+  <label for="">image url</label>
+  <input type="text" name="image_url" placeholder="<%= @user.image_url%>">
+  <button>submit</button>
+</form>
