@@ -19,21 +19,48 @@
 </div>
 
 <h1> Board </h1>
+  <!-- Sort by:
+  <% @tags.each do |tag| %>
+    <span data-tag-id="<%=tag.id%>" class="tags">#<%= tag.name%></span>
+  <% end %> -->
+
+  Sort by:
+  <% @tags.each do |tag| %>
+    <!-- <span data-tag-name="<%=tag.name%>" class="tags">#<%= tag.name%></span> -->
+    <span><a href="/cards/show?id=<%= tag.id %>"><%= tag.name%></a></span>
+  <% end %>
+
+<br>
+<br>
 <div class="body">
-  <p>Sort By: Food Drinks Nature Activities</p>
-<!-- div for styling -->
-<!-- div for float left display -->
-<!-- loop for displaying all cards -->
   <% @cards.each do |card| %>
-    <div class="card">
-      <h2><%= card.title %></h2>
-      <!-- remember to fix card size and image size -->
-      <span><img src="<%= card.image %>" height="150" width="150"></span>
-      <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
-      <p><a href="<%= card.source %>">Link</a></p>
+      <div class="card">
+        <h2><%= card.title %></h2>
+        <!-- remember to fix card size and image size -->
+        <span><img src="<%= card.image %>" height="150" width="150"></span>
+        <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
+        <p><a href="<%= card.source %>">Link</a></p>
+        <% card.tags.each do |cardtag| %>
+          <span class="tag"><%= cardtag.name %></span>
+        <% end %>
       </div>
+
   <%  end %>
 </div>
+
+<script>
+
+  $('.tags').on('click',function(event){
+    event.preventDefault();
+    var tagName = $(this).data('tag-name');
+    console.log(tagName);
+    // var cards = $('.card');
+    // console.log(cards);
+
+
+
+  });
+</script>
 
 <style>
 .currency_weather{

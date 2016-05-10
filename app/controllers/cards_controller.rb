@@ -20,6 +20,12 @@ class CardsController < ApplicationController
 
   end
 
+  def show
+    @tag = Tag.find(params[:id])
+    @user = User.find(session[:id])
+    @cards = @tag.cards & @user.cards
+  end
+
   def signup
 
   end
@@ -35,6 +41,7 @@ class CardsController < ApplicationController
 
   def board
     @user = User.find(session[:id])
+    @tags = Tag.all
     @country_id = params[:country_id]
     @country = Country.find(@country_id)
     # displaying common cards between @country.cards(ALL) and user's card by using the & method
