@@ -1,0 +1,32 @@
+<h1> Board </h1>
+<div class="body">
+<!-- div for styling -->
+<!-- div for float left display -->
+<!-- loop for displaying all cards -->
+  <% @cards.each do |card| %>
+    <div class="card">
+      <!-- remember to fix card size and image size -->
+      <span><img src="<%= card.image %>" height="150" width="150"></span>
+      <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
+      <h2><%= card.title %></h2>
+      <p><%= card.source %></p>
+      </div>
+  <%  end %>
+</div>
+
+<style>
+.body {
+  margin: 0;
+  padding: 5px 5px;
+}
+.card {
+  float: left;
+  margin: 0 0 10px 10px;
+  border: 2px solid red;
+  padding: 40px 80px;
+}
+.card #img {
+  text-align: center;
+}
+
+</style>
