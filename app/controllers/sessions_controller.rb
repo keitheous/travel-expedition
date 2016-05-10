@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
 
-enable :sessions
 
   def index
 
@@ -16,8 +15,8 @@ enable :sessions
     user.email =params[:email]
     user.password = params[:password]
     user.save
-    sessions[:id] = user.id
-    render "/profile?id=#{user.id}"  
+    session[:id] = user.id
+    redirect_to "/profile"
   
 end
 
