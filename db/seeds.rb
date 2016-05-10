@@ -33,3 +33,12 @@ CardTag.create(card_id: 2, tag_id:1);
 CardTag.create(card_id: 3, tag_id:3);
 CardTag.create(card_id: 4, tag_id:4);
 
+# tags = ["food"]
+
+# tags.each do |tag|
+
+#   newTag = Tag.new
+#   newTag.name = tag
+#   newTag.save 
+
+# end
