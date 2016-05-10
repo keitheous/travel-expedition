@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/signup' => 'sessions#join'
   get '/login' => 'sessions#login'
   post '/login' => 'sessions#signedin'
+  post '/logout' => 'sessions#logout'
   #new card page
   get '/new' => 'cards#new'
 
