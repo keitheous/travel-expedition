@@ -17,7 +17,7 @@ class CardsController < ApplicationController
         end
       end
     end
-    
+
   end
 
   def signup
@@ -34,18 +34,25 @@ class CardsController < ApplicationController
 
 
   def board
-    # user_id = params[:user_id]
-    #country_id = params[:country_id]
-    @country = Country.first
-    @cards = @country.cards
+    @user = User.find(session[:id])
+    @country_id = params[:country_id]
+    @country = Country.find(@country_id)
+    # displaying common cards between @country.cards(ALL) and user's card by using the & method
+    @cards = @country.cards & @user.cards
+
   end
 
   def create
+
     card = Card.new
     card.title = params[:title]
     card.image = params[:image]
     card.source = params[:source]
-    card.save 
+    card.user.id = sessions[:id]
+
+    country = Country.find_by(name: params[:country])
+    card.countries << country
+    card.save
 
     tags = [
       [:foodanddrink, "Food & Drink"],
@@ -58,7 +65,6 @@ class CardsController < ApplicationController
       [:free, "Free"]
     ]
 
-
     tags.each do |tag|
 
         if params[tag[0]] === 'on'
@@ -68,7 +74,7 @@ class CardsController < ApplicationController
           cardtag.tag_id = tag_data.id
           cardtag.card_id = card.id
           cardtag.save
-          
+
         else
           puts "not on"
         end
