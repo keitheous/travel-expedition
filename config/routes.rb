@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   #new card form creationaw
   post '/cards' => 'cards#create'
 
+  get '/profile' => 'cards#profile'
 end
