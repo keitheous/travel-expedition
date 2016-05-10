@@ -20,6 +20,12 @@ class CardsController < ApplicationController
 
   end
 
+  def show
+    @tag = Tag.find(params[:id])
+    @user = User.find(session[:id])
+    @cards = @tag.cards & @user.cards
+  end
+
   def signup
 
   end

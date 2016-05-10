@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
 
 
-
+  get '/cards/show' => 'cards#show'
 
   get '/profile' => 'cards#profile'
 
