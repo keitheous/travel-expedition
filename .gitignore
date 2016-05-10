@@ -11,12 +11,7 @@
 /log/*
 !/log/.keep
 /tmp
-<<<<<<< HEAD
-*/.DS_Store
-*.DS_Store
-=======
 .DS_Store
 *.DS_Store
 */.DS_Store
 **/.DS_Store
->>>>>>> e57b58bfb7ce28983d1cbfb012c0cb4508457e58
