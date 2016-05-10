@@ -46,6 +46,11 @@ class CardsController < ApplicationController
     @country = Country.find(@country_id)
     # displaying common cards between @country.cards(ALL) and user's card by using the & method
     @cards = @country.cards & @user.cards
+    # currency exchange api parameters
+    default_country = @user.default_currency
+    dest_country = @country.name
+    @base = IsoCountryCodes.search_by_name(default_country).first.currency
+    @dest = IsoCountryCodes.search_by_name(dest_country).first.currency
 
   end
 

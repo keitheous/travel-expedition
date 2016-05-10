@@ -12,7 +12,11 @@
     <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
   </div>
   <div class="currency_weather">
-    <h3>Currency Api</h3>
+    <div class="currency">
+      <h3>Currency Api</h3>
+      <div id="default_currency"><%= @base%></div> ==> 
+      <div id="dest_currency"><%= @dest %></div>
+    </div>
       <img src="https://s-media-cache-ak0.pinimg.com/236x/05/77/c8/0577c800b879b8b5affdbb2df364e24c.jpg">
     <h3>Weather Api</h3>
   </div>
@@ -60,6 +64,25 @@
 
 
   });
+
+  // currency exchange API
+  var base = $('#default_currency').html();
+  var dest = $('#dest_currency').html();
+  if(base === dest) {
+    var $newElem = $('<div>').html("1.00");
+    $('.currency').append($newElem);
+  } else {
+    $.ajax({
+      url: 'http://api.fixer.io/latest',
+      data: {base: base, symbols: dest }
+    }).done(function(response){
+      console.log(response);
+      var currency = response.rates[dest];
+      var $newElem = $('<div>').html(currency);
+      $('.currency').append($newElem);
+    });
+  }
+
 </script>
 
 <style>
