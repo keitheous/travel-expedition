@@ -18,7 +18,11 @@ class SessionsController < ApplicationController
     session[:id] = user.id
     redirect_to "/profile"
     redirect_to "/profile"
-end
+  end
+
+  def 
+
+  end
 
 
   def login
