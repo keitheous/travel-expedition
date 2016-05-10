@@ -18,4 +18,6 @@ Rails.application.routes.draw do
 
   get '/profile' => 'cards#profile'
 
+  get '/profile/edit' => 'profiles#edit'
+
 end

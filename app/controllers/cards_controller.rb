@@ -48,7 +48,7 @@ class CardsController < ApplicationController
     card.title = params[:title]
     card.image = params[:image]
     card.source = params[:source]
-    card.user_id = session[:id]
+    card.user.id = sessions[:id]
 
     country = Country.find_by(name: params[:country])
     card.countries << country
