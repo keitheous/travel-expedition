@@ -7,8 +7,15 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#signedin'
   #new card page
   get '/new' => 'cards#new'
+
+  get '/board' => 'cards#board'
+
   #new card form creationaw
   post '/cards' => 'cards#create'
 
+
+
+
   get '/profile' => 'cards#profile'
+
 end

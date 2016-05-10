@@ -25,19 +25,26 @@ class CardsController < ApplicationController
   end
 
   def signup
-    
+
   end
 
   def login
-    
+
   end
 
   def new
-    
+
+  end
+
+
+  def board
+    # user_id = params[:user_id]
+    #country_id = params[:country_id]
+    @country = Country.first
+    @cards = @country.cards
   end
 
   def create
-
     card = Card.new
     card.title = params[:title]
     card.image = params[:image]
@@ -48,8 +55,8 @@ class CardsController < ApplicationController
 
     redirect_to '/'
 
-    else 
-    
+    else
+
     redirect_to '/new'
 
     end

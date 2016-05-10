@@ -1,0 +1,86 @@
+<div class="banner">
+  <span id="user">user profile</span>
+  <span id="add_card"><button>add card</button></span>
+</div>
+<div class="country_info">
+  <div class="country">
+    <h2><%= @country.name %></h2>
+    <img src="https://s-media-cache-ak0.pinimg.com/236x/05/77/c8/0577c800b879b8b5affdbb2df364e24c.jpg">
+  </div>
+  <div class="emergency">
+    <h3><font color="red"> emergency contact </font></h3>
+    <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+  </div>
+  <div class="currency_weather">
+    <h3>Currency Api</h3>
+      <img src="https://s-media-cache-ak0.pinimg.com/236x/05/77/c8/0577c800b879b8b5affdbb2df364e24c.jpg">
+    <h3>Weather Api</h3>
+  </div>
+</div>
+
+<h1> Board </h1>
+<div class="body">
+  <p>Sort By: Food Drinks Nature Activities</p>
+<!-- div for styling -->
+<!-- div for float left display -->
+<!-- loop for displaying all cards -->
+  <% @cards.each do |card| %>
+    <div class="card">
+      <h2><%= card.title %></h2>
+      <!-- remember to fix card size and image size -->
+      <span><img src="<%= card.image %>" height="150" width="150"></span>
+      <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
+      <p><a href="<%= card.source %>">Link</a></p>
+      </div>
+  <%  end %>
+</div>
+
+<style>
+.currency_weather{
+    padding-left: 40px;
+    display:inline-block;
+    width: 30%;
+}
+
+.country_info{
+  padding: 0;
+  margin: 0;
+  border-bottom: solid 3px;
+}
+.emergency{
+  margin: 0;
+  width: 30%;
+  display: inline-block;
+  margin: 0px;
+}
+.country{
+  width: 30%;
+  display: inline-block;
+}
+.banner{
+  background-color: grey;
+  width: 100%;
+  height: 40px;
+}
+
+.body {
+  margin: 0;
+  padding: 5px 5px;
+}
+.card {
+  float: left;
+  margin: 0 0 10px 10px;
+  border: 2px solid red;
+  padding: 40px 80px;
+}
+.card #img {
+  text-align: center;
+}
+#user {
+  float: left;
+}
+
+#add_card {
+  float: right;
+}
+</style>
