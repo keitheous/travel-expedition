@@ -1,6 +1,27 @@
 class CardsController < ApplicationController
+
   def index
 
+  end
+
+  def profile
+    @user = User.first
+    @cards = @user.cards
+    # get all the cards.countries belongs to the user
+    @countries = []
+    # get the number of cards of the user within one country
+
+    @cards.each do |card|
+      card.countries.each do |country|
+        if @countries.index(country) == nil
+          @countries.push(country)
+        end
+      end
+    end
+
+
+
+    
   end
 
   def signup
