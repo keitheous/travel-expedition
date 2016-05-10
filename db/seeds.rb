@@ -255,7 +255,7 @@ Country.create(name:"Western Sahara");
 Country.create(name:"Yemen");
 Country.create(name:"Yugoslavia");
 Country.create(name:"Zambia");
-Country.create(name:"Zimbabwe"
+Country.create(name:"Zimbabwe");
 CountryCard.create(country_id:1,card_id:1);
 CountryCard.create(country_id:1,card_id:1);
 CountryCard.create(country_id:2,card_id:2);

@@ -9,6 +9,10 @@ class SessionsController < ApplicationController
     
   end
 
+  def login
+
+  end
+
   def join
     user = User.new
     user.name = params[:name].downcase
@@ -19,9 +23,17 @@ class SessionsController < ApplicationController
     redirect_to "/profile"
   end
 
-  def login
-    
+  def signedin
+    user = User.find_by(name: "#{params[:username].downcase}" )
+      if user && user.authenticate(params[:password])
+        session[:id] = user.id
+        redirect_to "/profile"
+      else
+        session[:attempt] = true
+      end
+
   end
+
 
   def new
     
