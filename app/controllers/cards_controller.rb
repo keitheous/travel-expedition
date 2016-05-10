@@ -37,7 +37,9 @@ class CardsController < ApplicationController
     @user = User.find(session[:id])
     @country_id = params[:country_id]
     @country = Country.find(@country_id)
-    @cards = @country.cards
+    # displaying common cards between @country.cards(ALL) and user's card by using the & method
+    @cards = @country.cards & @user.cards
+
   end
 
   def create
@@ -45,7 +47,7 @@ class CardsController < ApplicationController
     card.title = params[:title]
     card.image = params[:image]
     card.source = params[:source]
-    card.save 
+    card.save
 
     tags = [
       [:foodanddrink, "Food & Drink"],
@@ -68,7 +70,7 @@ class CardsController < ApplicationController
           cardtag.tag_id = tag_data.id
           cardtag.card_id = card.id
           cardtag.save
-          
+
         else
           puts "not on"
         end
