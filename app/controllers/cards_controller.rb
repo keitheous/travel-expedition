@@ -21,17 +21,37 @@ class CardsController < ApplicationController
     card.title = params[:title]
     card.image = params[:image]
     card.source = params[:source]
-    #tag shit #cards_tags
+    card.save 
 
-    if card.save
+    tags = [
+      [:foodanddrink, "Food & Drink"],
+      [:accommodation, "Accommodation"],
+      [:transport, "Transport"],
+      [:culture, "Culture"],
+      [:entertainment, "Entertainment"],
+      [:shopping, "Shopping"],
+      [:nature, "Nature"],
+      [:free, "Free"]
+    ]
 
-    redirect_to '/'
 
-    else 
-    
-    redirect_to '/new'
+    tags.each do |tag|
+
+        if params[tag[0]] === 'on'
+
+          cardtag = CardTag.new
+          tag_data = Tag.find_by name: tag[1]
+          cardtag.tag_id = tag_data.id
+          cardtag.card_id = card.id
+          cardtag.save
+          
+        else
+          puts "not on"
+        end
 
     end
+
+    redirect_to '/'
 
   end
 
