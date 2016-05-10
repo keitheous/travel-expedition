@@ -17,11 +17,13 @@ class CardsController < ApplicationController
 
 
   def board
-    @cards = Card.all
+    # user_id = params[:user_id]
+    #country_id = params[:country_id]
+    @country = Country.first
+    @cards = @country.cards
   end
 
   def create
-
     card = Card.new
     card.title = params[:title]
     card.image = params[:image]
