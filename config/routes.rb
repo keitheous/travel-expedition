@@ -16,7 +16,11 @@ Rails.application.routes.draw do
 
 
 
+  get '/cards/show' => 'cards#show'
 
   get '/profile' => 'cards#profile'
+
+  get '/profile/edit' => 'profiles#edit'
+  put '/profile/update' => 'profiles#update'
 
 end

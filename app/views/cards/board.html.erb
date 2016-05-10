@@ -12,28 +12,78 @@
     <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
   </div>
   <div class="currency_weather">
-    <h3>Currency Api</h3>
+    <div class="currency">
+      <h3>Currency Api</h3>
+      <div id="default_currency"><%= @base%></div> ==> 
+      <div id="dest_currency"><%= @dest %></div>
+    </div>
       <img src="https://s-media-cache-ak0.pinimg.com/236x/05/77/c8/0577c800b879b8b5affdbb2df364e24c.jpg">
     <h3>Weather Api</h3>
   </div>
 </div>
 
 <h1> Board </h1>
+  <!-- Sort by:
+  <% @tags.each do |tag| %>
+    <span data-tag-id="<%=tag.id%>" class="tags">#<%= tag.name%></span>
+  <% end %> -->
+
+  Sort by:
+  <% @tags.each do |tag| %>
+    <!-- <span data-tag-name="<%=tag.name%>" class="tags">#<%= tag.name%></span> -->
+    <span><a href="/cards/show?id=<%= tag.id %>"><%= tag.name%></a></span>
+  <% end %>
+
+<br>
+<br>
 <div class="body">
-  <p>Sort By: Food Drinks Nature Activities</p>
-<!-- div for styling -->
-<!-- div for float left display -->
-<!-- loop for displaying all cards -->
   <% @cards.each do |card| %>
-    <div class="card">
-      <h2><%= card.title %></h2>
-      <!-- remember to fix card size and image size -->
-      <span><img src="<%= card.image %>" height="150" width="150"></span>
-      <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
-      <p><a href="<%= card.source %>">Link</a></p>
+      <div class="card">
+        <h2><%= card.title %></h2>
+        <!-- remember to fix card size and image size -->
+        <span><img src="<%= card.image %>" height="150" width="150"></span>
+        <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
+        <p><a href="<%= card.source %>">Link</a></p>
+        <% card.tags.each do |cardtag| %>
+          <span class="tag"><%= cardtag.name %></span>
+        <% end %>
       </div>
+
   <%  end %>
 </div>
+
+<script>
+
+  $('.tags').on('click',function(event){
+    event.preventDefault();
+    var tagName = $(this).data('tag-name');
+    console.log(tagName);
+    // var cards = $('.card');
+    // console.log(cards);
+
+
+
+  });
+
+  // currency exchange API
+  var base = $('#default_currency').html();
+  var dest = $('#dest_currency').html();
+  if(base === dest) {
+    var $newElem = $('<div>').html("1.00");
+    $('.currency').append($newElem);
+  } else {
+    $.ajax({
+      url: 'http://api.fixer.io/latest',
+      data: {base: base, symbols: dest }
+    }).done(function(response){
+      console.log(response);
+      var currency = response.rates[dest];
+      var $newElem = $('<div>').html(currency);
+      $('.currency').append($newElem);
+    });
+  }
+
+</script>
 
 <style>
 .currency_weather{
