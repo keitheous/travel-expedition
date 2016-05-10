@@ -26,7 +26,8 @@
 
   Sort by:
   <% @tags.each do |tag| %>
-    <span data-tag-name="<%=tag.name%>" class="tags">#<%= tag.name%></span>
+    <!-- <span data-tag-name="<%=tag.name%>" class="tags">#<%= tag.name%></span> -->
+    <span><a href="/cards/show?id=<%= tag.id %>"><%= tag.name%></a></span>
   <% end %>
 
 <br>
@@ -55,7 +56,7 @@
     console.log(tagName);
     // var cards = $('.card');
     // console.log(cards);
-    
+
 
 
   });
