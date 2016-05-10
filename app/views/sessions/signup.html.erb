@@ -1,27 +1,33 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
+ 
+ <body>
+
 <h1>Sign Up</h1>
 
 <div class="ui-widget">
 <label for="tags">Tags: </label>
-  <form action="" method="post">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <label for="">username</label>
+  <form action="/join" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>    
+
+  <label for="">username</label>  
   <input type="text" name="name">
 
   <label for="">email</label>
   <input type="text" name="email">
 
-  <label for="">password</label>
-  <input type="password" name="password">
+    <label for="">password</label>
+    <input type="password" name="password">
 
-  <label for="">country</label>
-  <input id="country_selector" type="text" name="country">
+    <label for="">country</label>
+    <input id="country_selector" type="text" name="country">
 
   <button>join</button>
 
-<script type="text/javascript" src="/app/assets/javascripts/functions" ></script>
+<script type="text/javascript" src="/app/assets/javascripts/functions" >
 
+</script>
+ 
 
   </form>
 </div>
