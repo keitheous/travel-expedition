@@ -93,7 +93,7 @@ class CardsController < ApplicationController
 
     end
 
-    redirect_to '/'
+    redirect_to '/profile'
 
     end
 
