@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+enable :sessions
+
   def index
 
   end
@@ -6,6 +9,18 @@ class SessionsController < ApplicationController
   def signup
     
   end
+
+  def join
+    user = User.new
+    user.name = params[:name].downcase
+    user.email =params[:email]
+    user.password = params[:password]
+    user.save
+    sessions[:id] = user.id
+    render "/profile?id=#{user.id}"  
+  
+end
+
 
   def login
     
