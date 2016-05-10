@@ -4,7 +4,7 @@
 
 <form action="/cards" method="post">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  
+
   <label for="">Country</label>
   <input type="text" name="country" id="country_selector">
 
@@ -26,12 +26,9 @@
     <input type="checkbox" name="entertainment">Entertainment
     <input type="checkbox" name="shopping">Shopping
     <input type="checkbox" name="nature">Nature
-    <input type="checkbox" name="free">Free  
-    
+    <input type="checkbox" name="free">Free
+
   <p><input type="submit" value="Submit"></p>
 </form>
 
-
-
 <script type="text/javascript" src="/app/assets/javascripts/functions" >
-

@@ -8,25 +8,13 @@
 </head>
 <body>
 
+  <% if session[:id] %>
+  <form action="/logout" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <button>Log Out</button>
+  </form>
+  <% end %>
 
-
-
-
-
-
-
-<% if session[:id] %>
-
-<form action="/logout" method="post">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>  
-  
-<button  >logout</button>
-  
-</form>
-
-<% end %>
-
-<%= yield %>
-
+  <%= yield %>
 </body>
 </html>
