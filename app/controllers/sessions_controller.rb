@@ -14,13 +14,17 @@ class SessionsController < ApplicationController
   end
 
   def join
-    user = User.new
-    user.name = params[:name].downcase
-    user.email =params[:email]
-    user.password = params[:password]
-    user.save
-    session[:id] = user.id
-    redirect_to "/profile"
+    if User.find_by(name: params[:name]) || !Country.find_by(name: params[:country])
+      redirect_to '/'
+    else
+      user = User.new
+      user.name = params[:name].downcase
+      user.email =params[:email]
+      user.password = params[:password]
+      user.save
+      session[:id] = user.id
+      redirect_to "/profile"
+    end
   end
 
   def signedin
@@ -35,8 +39,9 @@ class SessionsController < ApplicationController
   end
 
 
-  def new
-    
+  def logout
+    session[:id] = nil    
+    redirect_to "/"
   end
 
 end
