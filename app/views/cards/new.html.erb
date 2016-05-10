@@ -1,1 +1,31 @@
 <h1>New Card</h1>
+
+<form action="/cards" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  
+  <label for="">Country</label>
+  <input type="text" name="country">
+
+  <label for="">Title</label>
+  <input type="text" name="title">
+
+  <label for="">Image Url</label>
+  <input type="text" name="image">
+
+  <label for="">Source Url</label>
+  <input type="text" name="source">
+
+  <label for="">Tags</label>
+
+    <input type="checkbox" name="tag" value="foodanddrink">Food & Drink
+    <input type="checkbox" value="accomodation">Accommodation
+    <input type="checkbox" value="transport">Transport
+    <input type="checkbox" value="culture">Culture
+    <input type="checkbox" value="entertainment">Entertainment
+    <input type="checkbox" value="shopping">Shopping
+    <input type="checkbox" value="nature">Nature
+    <input type="checkbox" value="free">Free  
+    
+  <p><input type="submit" value="Submit"></p>
+</form>
+
