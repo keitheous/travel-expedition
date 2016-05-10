@@ -17,7 +17,7 @@ class CardsController < ApplicationController
         end
       end
     end
-    
+
   end
 
   def signup
@@ -34,9 +34,9 @@ class CardsController < ApplicationController
 
 
   def board
-    # user_id = params[:user_id]
-    #country_id = params[:country_id]
-    @country = Country.first
+    @user = User.find(session[:id])
+    @country_id = params[:country_id]
+    @country = Country.find(@country_id)
     @cards = @country.cards
   end
 
