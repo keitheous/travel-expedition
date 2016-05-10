@@ -5,11 +5,10 @@ class CardsController < ApplicationController
   end
 
   def profile
-    @user = User.first
+    @user = User.find(session[:id])
     @cards = @user.cards
     # get all the cards.countries belongs to the user
     @countries = []
-    # get the number of cards of the user within one country
 
     @cards.each do |card|
       card.countries.each do |country|
@@ -18,9 +17,6 @@ class CardsController < ApplicationController
         end
       end
     end
-
-
-
     
   end
 
