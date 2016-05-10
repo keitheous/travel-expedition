@@ -41,10 +41,15 @@ class CardsController < ApplicationController
   end
 
   def create
+
     card = Card.new
     card.title = params[:title]
     card.image = params[:image]
     card.source = params[:source]
+    card.user.id = sessions[:id]
+
+    country = Country.find_by(name: params[:country])
+    card.countries << country
     card.save 
 
     tags = [
@@ -57,7 +62,6 @@ class CardsController < ApplicationController
       [:nature, "Nature"],
       [:free, "Free"]
     ]
-
 
     tags.each do |tag|
 
