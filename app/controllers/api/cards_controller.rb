@@ -45,12 +45,12 @@ module Api
           tagname = tagname.capitalize
           tag = Tag.find_by(name: tagname)
           @card.tags << tag
-        end
       end
       @card.save
 
       render json: @card.countries.to_json, status: 201
 
+      end
 
 
     end
