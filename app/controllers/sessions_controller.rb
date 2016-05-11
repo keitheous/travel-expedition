@@ -12,8 +12,10 @@ class SessionsController < ApplicationController
   def join
     if User.find_by(name: params[:name])
       session[:username] = false
+      redirect_to '/signup'
     elsif !Country.find_by(name: params[:country])
       session[:country] = false
+      redirect_to '/signup'
     elsif !is_a_valid_email?(params[:email])
       session[:email] = false
       redirect_to '/signup'
