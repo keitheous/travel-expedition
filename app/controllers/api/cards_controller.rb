@@ -2,14 +2,14 @@ module Api
   class CardsController < ApplicationController
     skip_before_filter :verify_authenticity_token
 
-    def show 
+    def show
       # @cards = Card.all
       @tag = Tag.find(params[:id])
       @user = User.find(params[:user_id])
-      @cards = @tag.cards & @user.cards 
+      @cards = @tag.cards & @user.cards
       render json: @cards.to_json, status: 201
     end
-      
+
 
     # def trial
     #   @card = Card.new
@@ -19,10 +19,10 @@ module Api
     #   # @card.user_id = 1
     #   @card.countries << Country.find(1)
     #   @card.save
-    #   render json: @card.to_json, status: 201 
+    #   render json: @card.to_json, status: 201
     # end
 
-  
+
 
 
     def create
@@ -42,13 +42,13 @@ module Api
 
       tags_Array = tags.split(',')
       tags_Array.each do |tagname|
-        tagname = tagname.capitalize 
+        tagname = tagname.capitalize
         tag = Tag.find_by(name: tagname)
         @card.tags << tag
       end
       @card.save
 
-      render json: @card.to_json, status: 201  
+      render json: @card.to_json, status: 201
 
 
 
@@ -57,8 +57,8 @@ module Api
     #   render json: card.to_json, status 201
     #   redirect_to '/profile'
 
-    # end  
-    
+    # end
+
     # def index
 
     # end
@@ -80,17 +80,13 @@ module Api
     # end
 
     # def show
-      
+
     # end
 
     # def show
     #   @dish = Dish.find(params[:id])
     #   render json: @dish
     # end
-
-
-
-
 
     # def board
     #   @user = User.find(session[:id])
@@ -108,6 +104,6 @@ module Api
     # end
 
 
-# 
+#
   end
 end
