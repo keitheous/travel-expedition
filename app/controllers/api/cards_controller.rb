@@ -37,14 +37,15 @@ module Api
       @card.countries << country
       @card.save
 
-      tags = params[:tags]
 
-
-      tags_Array = tags.split(',')
-      tags_Array.each do |tagname|
-        tagname = tagname.capitalize
-        tag = Tag.find_by(name: tagname)
-        @card.tags << tag
+      if params[:tags]
+        tags = params[:tags]
+        tags_Array = tags.split(',')
+        tags_Array.each do |tagname|
+          tagname = tagname.capitalize
+          tag = Tag.find_by(name: tagname)
+          @card.tags << tag
+        end
       end
       @card.save
 
