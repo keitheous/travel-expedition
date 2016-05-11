@@ -261,7 +261,7 @@ CountryCard.create(country_id:1,card_id:1);
 CountryCard.create(country_id:2,card_id:2);
 CountryCard.create(country_id:3,card_id:3);
 CountryCard.create(country_id:3,card_id:4);
-Tag.create(name:"Food & Drink");
+Tag.create(name:"Food");
 Tag.create(name:"Accommodation");
 Tag.create(name:"Transport");
 Tag.create(name:"Culture");

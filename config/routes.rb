@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   # post '/api/user' => '/api/sessions# '
   post '/api/user/new' => 'api/sessions#signup'
 
+  get '/api/card/show' => 'api/cards#show'
+  post '/api/card/create' => 'api/cards#create'
+  post '/api/card/trial' => 'api/cards#trial'
+
   #front page
   get '/' => 'cards#index'
 
