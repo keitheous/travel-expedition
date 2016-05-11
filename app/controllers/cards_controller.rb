@@ -53,7 +53,9 @@ class CardsController < ApplicationController
     dest_country = @country.name
     @base = IsoCountryCodes.search_by_name(default_country).first.currency
     @dest = IsoCountryCodes.search_by_name(dest_country).first.currency
-
+    # emergency information api
+    countryCode = IsoCountryCodes.search_by_name(dest_country).first.alpha2
+    @numbers = get_emergency_numbers(countryCode)
   end
 
   def create

@@ -9,7 +9,15 @@
   </div>
   <div class="emergency">
     <h3><font color="red"> emergency contact </font></h3>
-    <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+    <% if @numbers.size == 1 %>
+      <p>Emergency number: <%=@numbers.first %></p>
+    <% elsif @numbers.size == 3 %>
+      <p>Ambulance:<%=@numbers[0]%></p>
+      <p>Fire:<%=@numbers[1]%></p>
+      <p>Police:<%=@numbers[2]%></p>
+    <% else %>
+      <p>No emergency numbers find</p>
+    <% end %>
   </div>
   <div class="currency_weather">
     <div class="currency">
@@ -23,15 +31,9 @@
 </div>
 
 <h1> Board </h1>
-  <!-- Sort by:
-  <% @tags.each do |tag| %>
-    <span data-tag-id="<%=tag.id%>" class="tags">#<%= tag.name%></span>
-  <% end %> -->
-
   Sort by:
+  <span class="tags" data-tag-name="all"><a href="">All</a></span>
   <% @tags.each do |tag| %>
-    <!-- <span data-tag-name="<%=tag.name%>" class="tags">#<%= tag.name%></span> -->
-    <!-- <span><a href="/cards/show?id=<%= tag.id %>"><%= tag.name%></a></span> -->
     <span class="tags" data-tag-name="<%= tag.name%>"><a href=""><%= tag.name%></a></span>
   <% end %>
 
@@ -65,9 +67,12 @@
     event.preventDefault();
     var tagName = $(this).data('tag-name');
     console.log(tagName);
-    $('.card').hide();
-    $("."+tagName).show();
-    
+    if (tagName == 'all') {
+      $('.card').show();
+    } else {
+       $('.card').hide();
+      $("."+tagName).show();
+    }
   });
 
   // currency exchange API
@@ -87,6 +92,8 @@
       $('.currency').append($newElem);
     });
   }
+
+  //emergency api
 
 </script>
 <!-- temporary, will be moved into css file -->
