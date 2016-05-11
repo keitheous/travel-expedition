@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
     user = User.find(params[:id])
     user.name = params[:name];
     user.email = params[:email]
-    user.default_currency = params[:default_currency]
+    user.country = params[:country]
     user.image_url = params[:image_url]
     if user.save
       redirect_to '/profile'

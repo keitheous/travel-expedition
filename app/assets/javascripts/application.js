@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jQueryUI
-//= require functions
 //= require isotope
+//= require handlebars
+//= require functions
