@@ -1,7 +1,9 @@
 class CardsController < ApplicationController
 
   def index
-
+    if loggedin?
+      redirect_to '/profile'
+    end
   end
 
   def profile

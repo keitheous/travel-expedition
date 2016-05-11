@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
+    return User.find(session[:id])
   end
 
 end

@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(name:"Wolf",password:"apple");
-User.create(name:"Emily",password:"apple");
-User.create(name:"LJ",password:"apple");
-User.create(name:"Keithy",password:"apple");
+User.create(name:"Wolf",password:"apple", default_currency:"Australia");
+User.create(name:"Emily",password:"apple", default_currency:"Australia");
+User.create(name:"LJ",password:"apple", default_currency:"Australia");
+User.create(name:"Keithy",password:"apple", default_currency:"Australia");
 Card.create(title:"test0",user_id:1);
 Card.create(title:"test1",user_id:1);
 Card.create(title:"mountain",user_id:1);
