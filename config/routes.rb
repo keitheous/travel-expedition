@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   #api
 
-  post '/api/user/login' => '/api/sessions#login'
+  # post '/api/user' => '/api/sessions# '
   post '/api/user/new' => '/api/sessions#signup'
 
   #front page
