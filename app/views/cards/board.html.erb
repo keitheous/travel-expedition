@@ -31,7 +31,8 @@
   Sort by:
   <% @tags.each do |tag| %>
     <!-- <span data-tag-name="<%=tag.name%>" class="tags">#<%= tag.name%></span> -->
-    <span><a href="/cards/show?id=<%= tag.id %>"><%= tag.name%></a></span>
+    <!-- <span><a href="/cards/show?id=<%= tag.id %>"><%= tag.name%></a></span> -->
+    <span class="tags" data-tag-name="<%= tag.name%>"><a href=""><%= tag.name%></a></span>
   <% end %>
 
 <br>
@@ -40,7 +41,7 @@
   <% @cards.each do |card| %>
     <% tags = []%>
     <% card.tags.each do |tag| %>
-      <% tags.push(tag) %>
+      <% tags.push(tag.name) %>
     <%end%>
     <% classnames = tags.join(" ") %>
       <div class="card <%= classnames%>">
@@ -64,10 +65,9 @@
     event.preventDefault();
     var tagName = $(this).data('tag-name');
     console.log(tagName);
+    $('.card').hide();
+    $("."+tagName).show();
     
-
-
-
   });
 
   // currency exchange API
