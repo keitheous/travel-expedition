@@ -32,25 +32,32 @@ module Api
       @card.image = params[:image]
       @card.source = params[:source]
       @card.user_id = params[:id]
+      puts 'help me escape'
+      if !Country.find_by(name: params[:country])
+        puts "I've been activated"
+        error = 'you fail'
+        render json: @card.to_json, 201
 
-      country = Country.find_by(name: params[:country])
-      @card.countries << country
-      @card.save
+      else
+        country = Country.find_by(name: params[:country])
+        @card.countries << country
+        @card.save
 
 
-      if params[:tags]
-        tags = params[:tags]
-        tags_Array = tags.split(',')
-        tags_Array.each do |tagname|
-          tagname = tagname.capitalize
-          tag = Tag.find_by(name: tagname)
-          @card.tags << tag
+        if params[:tags]
+          tags = params[:tags]
+          tags_Array = tags.split(',')
+          tags_Array.each do |tagname|
+            tagname = tagname.capitalize
+            tag = Tag.find_by(name: tagname)
+            @card.tags << tag
+          end
         end
+        @card.save
+
+        render json: @card.to_json, status: 201
+
       end
-      @card.save
-
-      render json: @card.to_json, status: 201
-
 
 
     end
