@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#signedin'
   post '/logout' => 'sessions#logout'
 
+  #api
+
+  post '/api/user/login' => '/api/sessions#login'
+  post '/api/user/new' => '/api/sessions#signup'
+
   #front page
   get '/' => 'cards#index'
 
