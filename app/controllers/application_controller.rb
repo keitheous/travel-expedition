@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
+    User.find
   end
 
   def is_a_valid_email?(email)
