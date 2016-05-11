@@ -10,8 +10,43 @@
   <a class="add_card_btn" href="/new">ADD CARD</a>
 </header>
 
-<div class="container">
+<div class="new_card">
+  <h1>New Card</h1>
 
+  <form action="/cards" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+    <label for="">Country</label>
+    <input type="text" name="country" id="country">
+
+    <label for="">Title</label>
+    <input type="text" name="title" id="name" >
+
+    <label for="">Image Url</label>
+    <input type="text" name="image" id="image">
+
+    <label for="">Source Url</label>
+    <input type="text" name="source" id="source">
+
+    <label for="">Tags</label>
+
+
+
+      <input type="checkbox" class="tags" name="foodanddrink" id="foodanddrink">Food & Drink
+      <input type="checkbox" class="tags" name="accommodation" id="accommodation">Accommodation
+      <input type="checkbox" class="tags" name="transport" id="transport">Transport
+      <input type="checkbox" class="tags" name="culture" id="culture">Culture
+      <input type="checkbox" class="tags" name="entertainment" id="entertainment">Entertainment
+      <input type="checkbox" class="tags" name="shopping" id="shopping">Shopping
+      <input type="checkbox" class="tags" name="nature" id="nature">Nature
+      <input type="checkbox" class="tags" name="free" id="free">Free
+
+    <p><input type="submit" value="Submit" id="multiple" class="new_card_submit"></p>
+  </form>
+
+</div>
+
+<div class="container">
   <% @countries.each do |country| %>
     <a href="/board?country_id=<%= country.id%>">
       <div class="card">
@@ -25,3 +60,54 @@
   <% end %>
 
 </div>
+
+<script>
+$( document ).ready(function() {
+  $(".new_card").hide();
+  $(".add_card_btn").on('click',function(event){
+
+    event.preventDefault();
+    $(".new_card").show();
+  });
+
+  $(".new_card_submit").on('click',function(event){
+      event.preventDefault();
+      var country = $("#country").val();
+      var name = $("#name").val();
+      var image = $("#image").val();
+      var source = $("#source").val();
+
+      var tags = $('.tags:checked');
+      var tagsArr = [];
+      for(var i=0; i<tags.length; i++) {
+        tagsArr.push(tags[i].id);
+      }
+      console.log(tagsArr);
+
+      console.log(country);
+      console.log(name);
+      console.log(image);
+      console.log(source);
+      // var foodanddrink = $('#foodanddrink').val();
+      // var accommodation = $('#accommodation').val();
+      // var multiple = $('multiple').val();
+      // console.log(foodanddrink);
+      // console.log(accommodation);
+      // console.log(multiple);
+      $.ajax({
+        url:"/api/card/create",
+        method: 'post',
+        data: {
+          country: country,
+          name: name,
+          image: image,
+          source: source,
+          tags: tagsArr.join(',')
+      }}).done(function( response ) {
+        console.log( "yay" );
+        console.log(response);
+      });
+  });
+});
+
+</script>
