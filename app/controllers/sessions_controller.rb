@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
       user.name = params[:name].downcase
       user.email =params[:email]
       user.password = params[:password]
+      user.default_currency = params[:country]
       user.save
       session[:id] = user.id
       redirect_to "/profile"
