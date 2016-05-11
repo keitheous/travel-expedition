@@ -31,31 +31,24 @@ module Api
       @card.title = params[:title]
       @card.image = params[:image]
       @card.source = params[:source]
-      @card.user_id = params[:id]
-      puts 'help me escape'
-      if !Country.find_by(name: params[:country])
-        puts "I've been activated"
-        error = 'you fail'
-        render json: @card.to_json, 201
+      @card.user_id = session[:id]
 
-      else
-        country = Country.find_by(name: params[:country])
-        @card.countries << country
-        @card.save
+      country = Country.find_by(name: params[:country])
+      @card.countries << country
+      @card.save
 
 
-        if params[:tags]
-          tags = params[:tags]
-          tags_Array = tags.split(',')
-          tags_Array.each do |tagname|
-            tagname = tagname.capitalize
-            tag = Tag.find_by(name: tagname)
-            @card.tags << tag
-          end
-        end
-        @card.save
+      if params[:tags]
+        tags = params[:tags]
+        tags_Array = tags.split(',')
+        tags_Array.each do |tagname|
+          tagname = tagname.capitalize
+          tag = Tag.find_by(name: tagname)
+          @card.tags << tag
+      end
+      @card.save
 
-        render json: @card.to_json, status: 201
+      render json: @card.countries.to_json, status: 201
 
       end
 

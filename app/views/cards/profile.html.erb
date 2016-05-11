@@ -34,7 +34,7 @@
 
 
 
-      <input type="checkbox" class="tags" name="foodanddrink" id="food">Food
+      <input type="checkbox" class="tags" name="foodanddrink" id="foodanddrink">Food
       <input type="checkbox" class="tags" name="accommodation" id="accommodation">Accommodation
       <input type="checkbox" class="tags" name="transport" id="transport">Transport
       <input type="checkbox" class="tags" name="culture" id="culture">Culture
@@ -52,16 +52,28 @@
   <% @countries.each do |country| %>
     <a href="/board?country_id=<%= country.id%>">
       <div class="card">
-        <div><%= country.name%></div>
+        <div class="country-name"><%= country.name%></div>
         <img src="" alt="">
         <div>
-          <p>cards <span><%= (country.cards & @cards).size%></span></p>
+          <p>cards <span class="cards-number"><%= (country.cards & @cards).size%></span></p>
         </div>
       </div>
     </a>
   <% end %>
 
 </div>
+
+<script id="card-template" type="text/x-handlebars-template">
+  <a href="/board?country_id={{country_id}}>">
+    <div class="card">
+      <div class="country-name">{{country_name}}</div>
+      <img src="" alt="">
+      <div>
+        <p>cards <span>{{card_number}}</span></p>
+      </div>
+    </div>
+  </a>
+</script>
 
 <script>
 $( document ).ready(function() {
@@ -71,6 +83,32 @@ $( document ).ready(function() {
     event.preventDefault();
     $(".new_card").show();
   });
+
+  var update_card_list = function(country) {
+    var countryNames = [];
+    for(var i=0; i< $(".country-name").length; i++) {
+      countryNames.push($(".country-name").eq(i).text());
+    }
+    if (countryNames.indexOf(country.name) != -1) {
+      // if country card is displayed increase card number
+      var index = countryNames.indexOf(country.name);
+      var cardNumber = Number($(".country-name").eq(index).closest(".card").find(".cards-number").text());
+      cardNumber++;
+      $(".country-name").eq(index).closest(".card").find(".cards-number").text(cardNumber);
+    } else {
+      // country card does not exist, create a new one
+      var templateString = $("#card-template").html();
+      var templateFunction = Handlebars.compile(templateString);
+      // find the country id in country table
+      var html = templateFunction({
+        country_id: country.id,
+        country_name: country.name,
+        card_number: 1 
+      });
+      var $newElem = $(html);
+      $('.container').append($newElem);
+    }
+  }
 
   $(".new_card_submit").on('click',function(event){
       event.preventDefault();
@@ -101,13 +139,18 @@ $( document ).ready(function() {
         method: 'post',
         data: {
           country: country,
-          name: name,
+          title: name,
           image: image,
           source: source,
           tags: tagsArr.join(',')
       }}).done(function( response ) {
         console.log( "yay" );
         console.log(response);
+        // hide the add new card form
+        $(".new_card").hide();
+        // update the cards list without refresh the page
+        update_card_list(response[0]);
+
       });
   });
 });
