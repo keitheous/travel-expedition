@@ -23,7 +23,16 @@
     <input class="country_selector" type="text" name="country">
 
   <button>join</button>
- 
+  
+  <% if session[:username] == false %>
+    <div>invalid user name</div>
+  <% end %>
+  <% if session[:email] == false %>
+    <div>invalid email address</div>
+  <% end %>
+  <% if session[:country] == false %>
+    <div>invalid country name</div>
+  <% end %>
 
   </form>
 </div>

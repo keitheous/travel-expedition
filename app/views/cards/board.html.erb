@@ -38,7 +38,12 @@
 <br>
 <div class="body">
   <% @cards.each do |card| %>
-      <div class="card">
+    <% tags = []%>
+    <% card.tags.each do |tag| %>
+      <% tags.push(tag) %>
+    <%end%>
+    <% classnames = tags.join(" ") %>
+      <div class="card <%= classnames%>">
         <h2><%= card.title %></h2>
         <!-- remember to fix card size and image size -->
         <span><img src="<%= card.image %>" height="150" width="150"></span>
@@ -59,8 +64,7 @@
     event.preventDefault();
     var tagName = $(this).data('tag-name');
     console.log(tagName);
-    // var cards = $('.card');
-    // console.log(cards);
+    
 
 
 
