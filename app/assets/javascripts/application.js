@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require jQueryUI
 //= require functions
+//= require isotope
