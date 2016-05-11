@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
 <header class="profile_header">
 
   <a href="/profile/edit?id=<%= @user.id%>">
@@ -87,14 +89,13 @@ $( document ).ready(function() {
     for(var i=0; i< $(".country-name").length; i++) {
       countryNames.push($(".country-name").eq(i).text());
     }
-    if (countryNames.indexOf(country) != -1) {
+    if (countryNames.indexOf(country.name) != -1) {
       // if country card is displayed increase card number
-      var index = countryNames.indexOf(country);
+      var index = countryNames.indexOf(country.name);
       var cardNumber = Number($(".country-name").eq(index).closest(".card").find(".cards-number").text());
       cardNumber++;
       $(".country-name").eq(index).closest(".card").find(".cards-number").text(cardNumber);
     } else {
-      debugger
       // country card does not exist, create a new one
       var templateString = $("#card-template").html();
       var templateFunction = Handlebars.compile(templateString);
