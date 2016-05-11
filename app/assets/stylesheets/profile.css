@@ -15,6 +15,12 @@
   background-color: white
 }
 
+.profile_image img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+
 .username {
   margin-left: 20px;
   line-height: 50px;
