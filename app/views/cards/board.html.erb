@@ -86,6 +86,7 @@
 
 
 <!-- Tag Sorting -->
+<div class="container">
 <div class="board">
   <h1><%= @country.name %></h1>
     <div class="board-content">
@@ -94,39 +95,51 @@
       <% @tags.each do |tag| %>
         <button class="tags btn btn-secondary" data-tag-name="<%= tag.name%>"><a href=""><%= tag.name%></a></button>
       <% end %>
-
+</div>
     <br>
     <br>
-    <div class="content">
+<!-- /Tag Sorting End -->
 
-      <% @cards.each do |card| %>
-        <% tags = []%>
-        <% card.tags.each do |tag| %>
-          <% tags.push(tag.name) %>
-        <%end%>
-        <% classnames = tags.join(" ") %>
+<div class="content">
+  <div class="container"> 
+      <% @cards.each_slice(3) do |cards| %>
+        <div class="row">
+            <% @cards.each do |card| %>
+              <div class="col-md-4">
+                <div class="panel panel-default">
 
-          <div class="card <%= classnames%>">
-            <h2><%= card.title %></h2>
-            <!-- remember to fix card size and image size -->
-            <span><img src="<%= card.image %>" height="150" width="150"></span>
-            <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
-            <input type="checkbox" class="card-tick" id="<%=card.id%>"></input>
-            <p><a href="<%= card.source %>">Link</a></p>
-            <% card.tags.each do |cardtag| %>
-              <span class="tag"><%= cardtag.name %></span>
+
+                  <% tags = []%>
+                  <% card.tags.each do |tag| %>
+                    <% tags.push(tag.name) %>
+                  <%end%>
+                  <% classnames = tags.join(" ") %>
+
+                  <div class="card <%= classnames%>">
+                    <div class="panel-image">
+                    <span><img class="panel-image-preview" src="<%= card.image %>"></span>
+                    <label for="toggle-4"></label>
+                    </div>
+                    <input type="checkbox" id="toggle-4 <%=card.id%>" checked class="panel-image-toggle card-tick">
+                    <div class="panel-body">
+                        <h4><%= card.title %></h4>
+                        <span class="glyphicon glyphicon-ok-circle"></span>
+                    </div>
+                    <div class="panel-footer text-center">
+                        <span class="glyphicon"><a href="<%= card.source %>">Link To Source</a></span>
+                    </div>
+                   
+                    <% card.tags.each do |cardtag| %>
+                      <span class="tag"><%= cardtag.name %></span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
             <% end %>
-          </div>
-      <%  end %>
-    </div>
+        </div>
+      <% end %>
   </div>
 </div>
-
-
-
-
-
-
 
 
 
@@ -281,22 +294,4 @@ $( document ).ready(function() {
 
 </script>
 
-<style>
 
-.card {
-  float: left;
-  max-width: 31%;
-  margin: 0 0 10px 10px;
-  border: 2px solid red;
-  padding: 40px 80px;
-}
-.card #img {
-  text-align: center;
-
-.card-tick {
-  display: block;
-  vertical-align: top;
-}
-}
-
-</style>
