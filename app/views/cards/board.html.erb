@@ -15,7 +15,7 @@
                           </a>
                         </div>
                         <div class="name">
-                            <h4><%= @country.name %></h4>
+                            <h4 id="country-name-id"><%= @country.name %></h4>
                             <div class="currency" data-base-name="<%= @base%>" data-dest-name="<%= @dest %>"
                               <p>Currenct Conversion: </p>
                             </div>
@@ -149,6 +149,7 @@
     <!-- remember to fix card size and image size -->
     <span><img src="{{card_image}}" height="150" width="150"></span>
     <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
+    <input type="checkbox" class="card-tick" id="{{card_id}}"></input>
     <p><a href="{{card_source}}">Link</a></p>
     <!-- // add file -->
   </div>
@@ -176,7 +177,7 @@ $( document ).ready(function() {
   $(".new_card_submit").on('click',function(event){
 
       event.preventDefault();
-      var country = $('.country-name').text();
+      var countryName = $('#country-name-id').text();
       debugger
       var name = $("#name").val();
       var image = $("#image").val();
@@ -203,7 +204,7 @@ $( document ).ready(function() {
         url:"/api/card/create",
         method: 'post',
         data: {
-          country: country,
+          country: countryName,
           title: name,
           image: image,
           source: source,
@@ -228,7 +229,8 @@ $( document ).ready(function() {
           tag_name: tagsString,
           card_title: response[0].title,
           card_source: response[0].source,
-          card_image: response[0].image
+          card_image: response[0].image,
+          card_id: response[0].id
         });
         $newCard = $(html);
         $(".content").append($newCard);
@@ -274,13 +276,20 @@ $( document ).ready(function() {
     });
   }
 
-  $("#card-board").on('click',function(event){
-    var that = this;
-    console.log(this);
+  $('.content').on('click','.card-tick',function(event){
+  status = $(this).is(':checked'); 
+  id = event.toElement.id; 
+  $.ajax({
+    url: "/api/card/complete",
+    method: 'post',
+    data: {
+      card: id,
+      status: status
+    }}).done(function(event){
+    });
   });
-
-
 });
+
 </script>
 
 <style>
