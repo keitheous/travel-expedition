@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
         dispatch = data["data"]["dispatch"]["fixed"]
       end
       if data["data"]["dispatch"]["gsm"] != nil && data["data"]["dispatch"]["gsm"] != ""
-        dispatch += data["data"]["dispatch"]["gsm"]
+        dispatch = data["data"]["dispatch"]["gsm"]
       end
       if data["data"]["dispatch"]["all"] != nil && data["data"]["dispatch"]["all"] != ""
         dispatch += data["data"]["dispatch"]["all"]

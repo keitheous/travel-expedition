@@ -17,3 +17,5 @@
 //= require isotope
 //= require handlebars
 //= require functions
+//= require bootstrap
+//= require ct-paper
