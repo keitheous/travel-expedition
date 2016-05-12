@@ -4,21 +4,26 @@ class SessionsController < ApplicationController
   end
 
   def signup
+    session[:username] = nil
+    session[:country] = nil
+    session[:email] = nil
   end
 
   def login
   end
 
   def join
-    if User.find_by(name: params[:name])
-      session[:username] = false
-      redirect_to '/signup'
-    elsif !Country.find_by(name: params[:country])
-      session[:country] = false
-      redirect_to '/signup'
-    elsif !is_a_valid_email?(params[:email])
-      session[:email] = false
-      redirect_to '/signup'
+    if User.find_by(name: params[:name]) || !Country.find_by(name: params[:country]) || !is_a_valid_email?(params[:email])
+      if User.find_by(name: params[:name])
+        session[:username] = true
+      end
+      if !Country.find_by(name: params[:country])
+        session[:country] = true
+      end
+      if !is_a_valid_email?(params[:email])
+        session[:email] = true
+      end
+      render :signup
     else
       user = User.new
       user.name = params[:name].downcase
