@@ -61,7 +61,6 @@
         <input type="text" name="country" placeholder="Country..." class="country_selector form-control" id="">
     </div>
     
-  <button>join</button>
   
   <% if session[:username] == false %>
     <div>invalid user name</div>
@@ -73,15 +72,15 @@
     <div>invalid country name</div>
   <% end %>
 
-  </form>
 </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Sign Up Now</button>
+  <button class="btn btn-primary">Sign up now</button>
       </div>
     </div>
   </div>
+  </form>
 </div>
 
 <!-- Modal for Log In -->
@@ -110,13 +109,13 @@
         <input type="password" name="password" placeholder="Password..." class="form-control" id="">
     </div>
 
-      <p><button type="submit" class="btn">Login!</button></p>
-  </form>
+
     </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Log In Now</button>
+        <button class="btn btn-primary">Log In Now</button>
+  </form>
       </div>
     </div>
   </div>
