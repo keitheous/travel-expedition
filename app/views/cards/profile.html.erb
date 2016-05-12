@@ -69,7 +69,7 @@
       <div class="country-name">{{country_name}}</div>
       <img src="" alt="">
       <div>
-        <p>cards <span>{{card_number}}</span></p>
+        <p>cards <span class="cards-number">{{card_number}}</span></p>
       </div>
     </div>
   </a>
@@ -149,6 +149,7 @@ $( document ).ready(function() {
         // hide the add new card form
         $(".new_card").hide();
         // update the cards list without refresh the page
+        debugger
         update_card_list(response[0]);
 
       });
