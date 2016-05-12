@@ -1,3 +1,10 @@
+#register-navbar {
+    position: static;
+    height: 175px;
+    background: black;
+}
+
+
 html,
 body {
     width: 100%;
