@@ -105,6 +105,7 @@
     <!-- remember to fix card size and image size -->
     <span><img src="{{card_image}}" height="150" width="150"></span>
     <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
+    <input type="checkbox" class="card-tick" id="{{card_id}}"></input>
     <p><a href="{{card_source}}">Link</a></p>
     <!-- // add file -->
   </div>
@@ -183,7 +184,8 @@ $( document ).ready(function() {
           tag_name: tagsString,
           card_title: response[0].title,
           card_source: response[0].source,
-          card_image: response[0].image
+          card_image: response[0].image,
+          card_id: response[0].id
         });
         $newCard = $(html);
         $(".content").append($newCard);
@@ -229,13 +231,23 @@ $( document ).ready(function() {
     });
   }
 
-  $("#card-board").on('click',function(event){ 
-    var that = this;
-    console.log(this);
+  $('.content').on('click','.card-tick',function(event){
+  status = $(this).is(':checked'); 
+  id = event.toElement.id; 
+  console.log("jhgkjghk")
+
+  $.ajax({
+    url: "/api/card/complete",
+    method: 'post',
+    data: {
+      card: id,
+      status: status
+    }}).done(function(event){
+      console.log('event');
+    });
   });
-
-
 });
+
 </script>
 
 <style>

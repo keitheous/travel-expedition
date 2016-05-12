@@ -45,6 +45,12 @@ module Api
 
     end
 
+    def complete
+      card = Card.find(params[:id])
+      card.complete = params[:status]
+      card.save
+    end
+
   
   end
 end
