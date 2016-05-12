@@ -68,27 +68,33 @@
      </div>
 <!-- </New Card Form (Hidden Until Click) END> -->
 
-
-  <div class="container"><div>
-    <% @countries.each_slice(3) do |countries| %>
+<div class="container">
+<div class="card-container">
+  
+  <% @countries.each_slice(3) do |countries| %>
+    
     <div class="row">
-    <% countries.each do |country| %>
-    <div class="col-md-3">
-      <a href="/board?country_id=<%= country.id%>">
-       <div class="card">
-         <div class="country-name"><%= country.name%></div></a>
-         <img src="" alt="">
+
+      <% countries.each do |country| %>
+
+        <div class="col-md-3">
+          
+          <a href="/board?country_id=<%= country.id%>">
+          <div class="card">
+           <div class="country-name"><%= country.name%>
+           </div>
+          </a>
          <div>
            <p>cards <span class="cards-number"><%= (country.cards & @cards).size%></span></p>
          </div>
-
-       </div></div>
-     
-   <% end %>
- </div>
- </div>
- <% end %>
- </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  
+  <% end %>
+</div>
+</div>
 
 
 
@@ -137,7 +143,7 @@ $( document ).ready(function() {
         card_number: 1 
       });
       var $newElem = $(html);
-      $('.container').append($newElem);
+      $('.card-container').append($newElem);
     }
   }
 
