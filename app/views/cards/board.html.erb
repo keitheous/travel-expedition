@@ -25,14 +25,14 @@
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3 text-center">
                       <div class="emergency">
-                        <% if @numbers.size == 1 %>
-                          <p>Emergency number: <%=@numbers.first %></p>
-                        <% elsif @numbers.size == 3 %>
-                          <p>Ambulance:<%=@numbers[0]%></p>
-                          <p>Fire:<%=@numbers[1]%></p>
-                          <p>Police:<%=@numbers[2]%></p>
-                        <% else %>
-                          <p>No emergency numbers find</p>
+                        <% if @numbers.error? == false  %>
+                          <% if @numbers.dispatch != ""%>
+                              <p>Emergency number: <%=@numbers.dispatch %></p>
+                          <% else %>
+                            <p>Ambulance:<%=@numbers.ambulance%></p>
+                            <p>Fire:<%=@numbers.fire%></p>
+                            <p>Police:<%=@numbers.police%></p>
+                          <% end %>
                         <% end %>
                       </div>
                         <br />
