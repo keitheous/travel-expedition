@@ -33,4 +33,9 @@ Rails.application.routes.draw do
   get '/profile/edit' => 'profiles#edit'
   put '/profile/update' => 'profiles#update'
 
+  # about page
+  get '/about' => 'profiles#about'
+  # contact page
+  get '/contact' => 'profiles#contact'
+
 end

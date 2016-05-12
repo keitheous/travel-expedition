@@ -21,6 +21,8 @@ class CardsController < ApplicationController
       end
     end
     
+    session[:about] = nil
+    session[:contact] = nil
 
   end
 
