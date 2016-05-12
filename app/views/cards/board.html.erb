@@ -1,8 +1,54 @@
-<div class="banner">
-  <a class="add_card" href="/new">ADD CARD</a>
-  <!-- add_card or add_card_btn -->
-</div>
+<!-- <top wrapper> -->
+  <div class="wrapper">
+        <div class="profile-background">
+            <div class="filter-black"></div>
+        </div>
+        <div class="profile-content section-nude">
+            <div class="container">
+                <div class="row owner">
+                    <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 text-center">
+                        <div class="avatar">
+                          <a href="/profile/edit?id=<%= @user.id%>">
+                            <div class="profile_image img-circle img-no-padding img-responsive">
+                              <img src="<%= @user.image_url%>" alt="">
+                            </div>
+                          </a>
+                        </div>
+                        <div class="name">
+                            <h4><%= @country.name %></h4>
+                            <div class="currency" data-base-name="<%= @base%>" data-dest-name="<%= @dest %>"
+                              <p>Currenct Conversion: </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                      <div class="emergency">
+                        <% if @numbers.size == 1 %>
+                          <p>Emergency number: <%=@numbers.first %></p>
+                        <% elsif @numbers.size == 3 %>
+                          <p>Ambulance:<%=@numbers[0]%></p>
+                          <p>Fire:<%=@numbers[1]%></p>
+                          <p>Police:<%=@numbers[2]%></p>
+                        <% else %>
+                          <p>No emergency numbers find</p>
+                        <% end %>
+                      </div>
+                        <br />
+                        <a class="btn add_card" href="/new"><i class="fa fa-pencil"></i>ADD NEW CARD</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </top wrapper> -->
 
+<!-- <div class="banner">
+  <a class="add_card" href="/new">ADD CARD</a>
+  add_card or add_card_btn
+</div> -->
+<!--
 <div class="country_info">
   <div class="country">
     <h2 class="country-name"><%= @country.name %></h2>
@@ -21,14 +67,12 @@
     <% end %>
   </div>
   <div class="currency_weather">
-    <div class="currency">
+    <div class="currencyApi" data-base-name="<%= @base%>" data-dest-name="<%= @dest %>"
       <h3>Currency Api</h3>
-      <div id="default_currency"><%= @base%></div> ==>
-      <div id="dest_currency"><%= @dest %></div>
     </div>
       <img src="https://s-media-cache-ak0.pinimg.com/236x/05/77/c8/0577c800b879b8b5affdbb2df364e24c.jpg">
   </div>
-</div>
+</div> -->
 
 <div class="new_card">
   <h1>New Card</h1>
@@ -212,8 +256,8 @@ $( document ).ready(function() {
   });
 
   // currency exchange API
-  var base = $('#default_currency').html();
-  var dest = $('#dest_currency').html();
+  var base = $('.currency').data("base-name");
+  var dest = $('.currency').data("dest-name");
   if(base === dest) {
     var $newElem = $('<div>').html("1.00");
     $('.currency').append($newElem);
@@ -229,7 +273,7 @@ $( document ).ready(function() {
     });
   }
 
-  $("#card-board").on('click',function(event){ 
+  $("#card-board").on('click',function(event){
     var that = this;
     console.log(this);
   });
