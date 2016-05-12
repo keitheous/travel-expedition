@@ -19,7 +19,16 @@ class ApplicationController < ActionController::Base
     data = HTTParty.get("http://emergencynumberapi.com/api/country/#{countryCode}")
     numbers = []
     if data["error"] == nil || data["error"] == "" 
-      dispatch = data["data"]["dispatch"]["all"] || data["data"]["dispatch"]["gsm"] || data["data"]["dispatch"]["fixed"]
+      # check if has any dispatch numbers
+      if data["data"]["dispatch"]["fixed"] != nil && data["data"]["dispatch"]["fixed"] != ""
+        dispatch = data["data"]["dispatch"]["fixed"]
+      elsif data["data"]["dispatch"]["gsm"] != nil && data["data"]["dispatch"]["gsm"] != ""
+        dispatch = data["data"]["dispatch"]["gsm"]
+        raise dispatch.inspect
+      elsif data["data"]["dispatch"]["all"] != nil && data["data"]["dispatch"]["all"] != ""
+        dispatch = data["data"]["dispatch"]["all"]
+      end
+
       if dispatch.join != "" && dispatch.join != nil
         numbers << dispatch.join
       else 
