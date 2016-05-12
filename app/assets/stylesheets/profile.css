@@ -5,8 +5,10 @@
 }
 
 .new_card {
+
   display: inline-block;
-  display: center;
+ /* display: center;*/
+
 
     display: table;
     /* position: relative; */
