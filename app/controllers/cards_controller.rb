@@ -28,19 +28,6 @@ class CardsController < ApplicationController
     @cards = @tag.cards & @user.cards
   end
 
-  def signup
-
-  end
-
-  def login
-
-  end
-
-  def new
-
-  end
-
-
   def board
     @user = User.find(session[:id])
     @tags = Tag.all
@@ -71,7 +58,7 @@ class CardsController < ApplicationController
     card.save
 
     tags = [
-      [:foodanddrink, "Food & Drink"],
+      [:food, "Food"],
       [:accommodation, "Accommodation"],
       [:transport, "Transport"],
       [:culture, "Culture"],
@@ -83,22 +70,22 @@ class CardsController < ApplicationController
 
     tags.each do |tag|
 
-        if params[tag[0]] === 'on'
+      if params[tag[0]] === 'on'
 
-          cardtag = CardTag.new
-          tag_data = Tag.find_by name: tag[1]
-          cardtag.tag_id = tag_data.id
-          cardtag.card_id = card.id
-          cardtag.save
+        cardtag = CardTag.new
+        tag_data = Tag.find_by name: tag[1]
+        cardtag.tag_id = tag_data.id
+        cardtag.card_id = card.id
+        cardtag.save
 
-        else
-          puts "not on"
-        end
+      else
+        puts "not on"
+      end
 
     end
 
     redirect_to '/profile'
 
-    end
+  end
 
 end
