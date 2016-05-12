@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
         dispatch = data["data"]["dispatch"]["gsm"]
       end
       if data["data"]["dispatch"]["all"] != nil && data["data"]["dispatch"]["all"] != ""
-        dispatch += data["data"]["dispatch"]["all"]
+        dispatch = data["data"]["dispatch"]["all"]
       end
 
       if dispatch.join != "" && dispatch.join != nil
@@ -41,15 +41,15 @@ class ApplicationController < ActionController::Base
         numbers << police.join
       end
     end
-    if numbers.size == 1
-      if numbers.first.length == 6
-        newNumber = numbers.first.slice(0..2)+"/"+numbers.first.slice(3..5)
-      elsif numbers.first.length == 9
-        newNumber = numbers.first.slice(0..2)+"/"+numbers.first.slice(3..5)+"/"+numbers.first.slice(6..8)
-      end
-      numbers.shift
-      numbers << newNumber
-    end
+    # if numbers.size == 1
+    #   if numbers.first.length == 6
+    #     newNumber = numbers.first.slice(0..2)+"/"+numbers.first.slice(3..5)
+    #   elsif numbers.first.length == 9
+    #     newNumber = numbers.first.slice(0..2)+"/"+numbers.first.slice(3..5)+"/"+numbers.first.slice(6..8)
+    #   end
+    #   numbers.shift
+    #   numbers << newNumber
+    # end
 
     return numbers
   end
