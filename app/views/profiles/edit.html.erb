@@ -1,13 +1,71 @@
-<form action="/profile/update?id=<%=@user.id%>" method="post">
+<div class="profile-edit-head"> 
+</div>
+
+<h2>Profile Edit</h2>
+<form class="profile-edit-form" action="/profile/update?id=<%=@user.id%>" method="post">
   <input type="hidden" value="put" name="_method">
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <label for="">User name</label>
-  <input type="text" name="name" value="<%=@user.name%>">
-  <label for="">email</label>
-  <input type="text" name="email" value="<%= @user.email%>">
-  <label for="">which country do you live</label>
-  <input class="country_selector" type="text" name="country" value="<%= @user.country%>">
-  <label for="">image url</label>
-  <input type="text" name="image_url" value="<%= @user.image_url%>">
-  <button>submit</button>
+  <div class="col-md-6 col-md-offset-3">
+    <div class="form-group">
+      <label for="usr">Name</label>
+      <input type="text" class="form-control" id="usr" placeholder="Name" name="name" value="<%=@user.name%>">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" placeholder="email" name="email" value="<%= @user.email%>">
+    </div>
+    <div class="form-group">
+      <label for="country">which country do you live</label>
+      <input class="form-control country-selector" id="country" placeholder="Country" name="country" value="<%= @user.country%>"></input>
+    </div>
+    <div class="form-group">
+      <label for="img">Image</label>
+      <input type="text" class="form-control" id="img" placeholder="Image URL" name="image_url" value="<%= @user.image_url%>">
+    </div>
+    <div class="form-group">
+      <input type="submit" class="form-control" id="submit">
+    </div>
+  </div> 
+  
 </form>
+
+
+
+<script type="text/javascript">
+  $('input').on('change keyup paste', function(){
+     var $this=$(this);
+     if($this.val()){
+       if(!$this.hasClass('inputed')){
+         $this.addClass('inputed').animate({'padding-top': '40px',"padding-bottom":'10px'}).parent().find('label').slideToggle();
+       }
+     } else $this.removeClass('inputed').animate({'padding-top': '15px',"padding-bottom":'10px'}).parent().find('label').hide();
+  });
+</script>
+
+<style>
+  .profile-edit-head {
+    background: url(https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=5af0e68c41241379a320d9832b7232ce) no-repeat center center scroll;
+    background-size: cover;
+    height: 150px;
+  }
+
+  input.form-control { 
+    height: 40px; 
+  }
+  label{
+    position: absolute;
+    margin-left: 12px; 
+    margin-top: 2px; 
+    font-size: 9pt; 
+    opacity: .7; 
+    display: none
+  }
+  .profile-edit-form {
+    margin-top: 50px;
+    background-color: lightblue;
+    padding: 40px;
+    border-radius: 10px;
+    height: 350px;
+  }
+
+</style>

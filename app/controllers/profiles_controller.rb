@@ -14,4 +14,14 @@ class ProfilesController < ApplicationController
       redirect_to "/profile/edit?id=#{params[:id]}"
     end
   end
+  # about page
+  def about
+    session[:contact] = nil
+    session[:about] = "about" 
+  end
+  # contact page
+  def contact
+    session[:about] = nil
+    session[:contact] = "contact"
+  end
 end

@@ -46,10 +46,18 @@
             </li>
 
             <li>
-                <a href="#" class="btn btn-simple">About</a>
+                <% if session[:about] == "about"%>
+                  <a href="/profile" class="btn btn-simple">Profile</a>
+                <% else %>
+                  <a href="/about" class="btn btn-simple">About</a>
+                <% end %>
             </li>
             <li>
-                <a href="#" class="btn btn-simple">Contact</a>
+                <% if session[:contact] == "contact"%>
+                  <a href="/profile" class="btn btn-simple">Profile</a>
+                <% else %>
+                  <a href="/contact" class="btn btn-simple">Contact</a>
+                <% end %>
             </li>
             <li>
                 <a href="#" target="_blank" class="btn btn-simple"><i class="fa fa-twitter"></i></a>
@@ -69,6 +77,10 @@
   </div>
 
 </body>
+<!-- <div class="footer register-footer text-center">
+                    <h6>&copy; 2016, made with <i class="fa fa-heart heart"></i> by Trvlm8s</h6>
+            </div> -->
+            
 
 
 
