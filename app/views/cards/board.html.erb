@@ -88,6 +88,7 @@
           <!-- remember to fix card size and image size -->
           <span><img src="<%= card.image %>" height="150" width="150"></span>
           <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
+          <input type="checkbox" class="card-tick" id="<%=card.id%>"></input>
           <p><a href="<%= card.source %>">Link</a></p>
           <% card.tags.each do |cardtag| %>
             <span class="tag"><%= cardtag.name %></span>
