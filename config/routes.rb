@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/api/card/show' => 'api/cards#show'
   post '/api/card/create' => 'api/cards#create'
   post '/api/card/trial' => 'api/cards#trial'
+  post '/api/card/complete' => 'api/cards#complete'
 
   #front page
   get '/' => 'cards#index'
