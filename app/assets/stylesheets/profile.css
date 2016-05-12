@@ -1,18 +1,36 @@
-.profile_header {
-  height: 200px;
-  display: flex;
-  background-color: grey;
-  position: relative;
+
+.profile-background {
+  background: url(https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=5af0e68c41241379a320d9832b7232ce) no-repeat center center scroll;
+  background-size: cover;
 }
+
+.new_card {
+  display: inline-block; 
+}
+
+/*.username{
+     position: relative;
+    left: 160px;
+    top: 160px; 
+}*/
+
+/*.add_card_btn{
+    position: inherit;
+    width: 79%;
+    text-align: right;
+    top: 160px;
+    height: 140px;
+}*/
 .profile_image {
   height: 100px;
   width: 100px;
-  border:1px solid black;
+  border:3px solid black;
   border-radius: 100px;
-  position: absolute;
+  /*position: absolute;
   left:50px;
-  top:35px;
+  top:120px;*/
   background-color: white
+
 }
 
 .profile_image img{
@@ -21,6 +39,7 @@
   border-radius: 50px;
 }
 
+/*
 .username {
   margin-left: 20px;
   line-height: 50px;
@@ -45,11 +64,13 @@
   text-align: center;
   font-weight: bold;
 }
+*/
+
 
 .container {
-  margin-top: 50px;
+  /*margin-top: 50px;  moved up*/
 }
-.card {
+/*.card {
   height: 200px;
   width:150px;
   border:1px solid black;
@@ -57,4 +78,4 @@
   float:left;
   margin:10px;
   padding:5px;
-}
+}*/

@@ -1,38 +1,76 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<!-- <top wrapper> -->
+  <div class="wrapper">
+        <div class="profile-background"> 
+            <div class="filter-black"></div>  
+        </div>
+        <div class="profile-content section-nude">
+            <div class="container">
+                <div class="row owner">
+                    <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 text-center">
+                        <div class="avatar">
+                          <a href="/profile/edit?id=<%= @user.id%>">
+                            <div class="profile_image img-circle img-no-padding img-responsive">
+                              <img src="<%= @user.image_url%>" alt="">
+                            </div>
+                          </a>
+                        </div>
+                        <div class="name">
+                            <h4><%= @user.name%><br /><small>World Explorer</small></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                        <p>A passion for travel is a passion for life</p>
+                        <br />
+                        <a class="btn add_card_btn" href="/new"><i class="fa fa-pencil"></i>ADD NEW CARD</a>
+                    </div>
+                </div>       
+            </div>
+        </div>
+    </div> 
+<!-- </top wrapper> -->
 
-<header class="profile_header">
 
-  <a href="/profile/edit?id=<%= @user.id%>">
-    <div class="profile_image">
-      <img src="<%= @user.image_url%>" alt="">
-    </div>
-  </a>
+<!-- <New Card Form (Hidden Until Click)> -->
 
-  <div class="username"><%= @user.name%></div>
-  <a class="add_card_btn" href="/new">ADD CARD</a>
-</header>
+<form lpformnum="1">
+  <div class="form-group">
+    <label for="exampleInputName2">Name</label>
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail2">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+  </div>
+  <button type="submit" class="btn btn-primary">Send invitation</button>
+</form>
+
 
 <div class="new_card">
   <h1>New Card</h1>
 
   <form action="/cards" method="post">
+      
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-
+    <div class="form-group">
     <label for="">Country</label>
     <input class="country_selector" type="text" name="country" id="country">
-
+    </div>
+    <div class="form-group">
     <label for="">Title</label>
     <input type="text" name="title" id="name" >
-
+    </div>
+    <div class="form-group">
     <label for="">Image Url</label>
     <input type="text" name="image" id="image">
-
+    </div>
+    <div class="form-group">
     <label for="">Source Url</label>
     <input type="text" name="source" id="source">
-
+    </div>
+    <div class="form-group">
     <label for="">Tags</label>
-
-
 
       <input type="checkbox" class="tags" name="food" id="food">Food
       <input type="checkbox" class="tags" name="accommodation" id="accommodation">Accommodation
@@ -44,10 +82,12 @@
       <input type="checkbox" class="tags" name="free" id="free">Free
 
     <p><input type="submit" value="Submit" id="multiple" class="new_card_submit"></p>
+    </div>
   </form>
 
-</div>
+</div> 
 
+<!-- List Country Boards on User Profile -->
 <div class="container">
   <% @countries.each do |country| %>
     <a href="/board?country_id=<%= country.id%>">
