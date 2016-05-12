@@ -33,7 +33,11 @@ module Api
       end
       @card.save
 
-      render json: @card.countries.to_json, status: 201
+      @array = []
+      @array << @card
+      @array << @card.countries
+
+      render json: @array.to_json, status: 201
 
       end
 
