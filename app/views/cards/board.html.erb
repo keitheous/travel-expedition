@@ -99,7 +99,7 @@
     <br>
     <br>
     <div class="content">
-      
+
       <% @cards.each do |card| %>
         <% tags = []%>
         <% card.tags.each do |tag| %>
@@ -123,35 +123,7 @@
   </div>
 </div>
 
-<!-- 
 
-<div class="container">
-  <div class="card-container">
-  
-  <% @countries.each_slice(3) do |countries| %>
-    
-    <div class="row">
-
-      <% countries.each do |country| %>
-
-        <div class="col-md-3">
-          
-          <a href="/board?country_id=<%= country.id%>">
-          <div class="card">
-           <div class="country-name"><%= country.name%>
-           </div>
-          </a>
-         <div>
-           <p>cards <span class="cards-number"><%= (country.cards & @cards).size%></span></p>
-         </div>
-        </div>
-      </div>
-      <% end %>
-    </div>
-  
-  <% end %>
-</div>
-</div> -->
 
 
 
