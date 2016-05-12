@@ -36,6 +36,7 @@ module Api
       @array = []
       @array << @card
       @array << @card.countries
+      @array << @card.tags
 
       render json: @array.to_json, status: 201
 
