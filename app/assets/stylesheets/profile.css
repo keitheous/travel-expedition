@@ -5,8 +5,10 @@
 }
 
 .new_card {
-  display: inline-block; 
+
+  display: inline-block;
  /* display: center;*/
+
 
     display: table;
     /* position: relative; */
@@ -16,7 +18,7 @@
 /*.username{
      position: relative;
     left: 160px;
-    top: 160px; 
+    top: 160px;
 }*/
 
 /*.add_card_btn{

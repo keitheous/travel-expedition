@@ -16,44 +16,75 @@ class ApplicationController < ActionController::Base
   end
 
   def get_emergency_numbers(countryCode)
-    data = HTTParty.get("http://emergencynumberapi.com/api/country/#{countryCode}")
-    numbers = []
-    if data["error"] == nil || data["error"] == "" 
-      # check if has any dispatch numbers
-      if data["data"]["dispatch"]["fixed"] != nil && data["data"]["dispatch"]["fixed"] != ""
-        dispatch = data["data"]["dispatch"]["fixed"]
-      end
-      if data["data"]["dispatch"]["gsm"] != nil && data["data"]["dispatch"]["gsm"] != ""
-        dispatch = data["data"]["dispatch"]["gsm"]
-      end
-      if data["data"]["dispatch"]["all"] != nil && data["data"]["dispatch"]["all"] != ""
-        dispatch = data["data"]["dispatch"]["all"]
-      end
-
-      if dispatch.join != "" && dispatch.join != nil
-        numbers << dispatch.join
-      else 
-        ambulance = data["data"]["ambulance"]["all"] || data["data"]["ambulance"]["gsm"] || data["data"]["ambulance"]["fixed"]
-        fire = data["data"]["fire"]["all"] || data["data"]["fire"]["gsm"] || data["data"]["fire"]["fixed"]
-        police = data["data"]["police"]["all"] || data["data"]["police"]["gsm"] || data["data"]["police"]["fixed"]
-        numbers << ambulance.join
-        numbers << fire.join
-        numbers << police.join
-      end
-    end
-    # if numbers.size == 1
-    #   if numbers.first.length == 6
-    #     newNumber = numbers.first.slice(0..2)+"/"+numbers.first.slice(3..5)
-    #   elsif numbers.first.length == 9
-    #     newNumber = numbers.first.slice(0..2)+"/"+numbers.first.slice(3..5)+"/"+numbers.first.slice(6..8)
-    #   end
-    #   numbers.shift
-    #   numbers << newNumber
-    # end
-
-    return numbers
+    emergency = Emergency.new(countryCode)
   end
 
 end
+
+class Emergency
+    def initialize(countryCode)
+      @response = HTTParty.get("http://emergencynumberapi.com/api/country/#{countryCode}")
+    end
+
+    def error?
+      if @response["error"] != nil && @response["error"] != ""
+        return true
+      else
+        return false
+      end
+    end
+
+    def dispatch
+      numbers = get_numbers("dispatch")  
+    end
+
+    def ambulance
+      numbers = get_numbers("ambulance")
+    end
+
+    def fire
+      numbers = get_numbers("fire")    
+    end
+
+    def police
+      numbers = get_numbers("police")
+    end
+
+    private
+    def get_numbers(keyword)
+      data = @response["data"][keyword]
+      numbersArr = []
+      if data["all"] == nil
+        all = nil
+      elsif data["all"].join == ""
+        all = nil
+      else
+        all = data["all"].join("/")
+        numbersArr << all
+      end
+
+      if data["gsm"] == nil
+        gsm = nil
+      elsif data["gsm"].join == ""
+        gsm = nil
+      else
+        gsm = data["gsm"].join
+        numbersArr << gsm
+      end
+
+      if data['fixed'] == nil
+        fixed = nil
+      elsif data["fixed"].join == ""
+        fixed = nil
+      else
+        fixed = data['fixed'].join
+        numbersArr << fixed
+      end
+      numbers = numbersArr.join("/")
+      return numbers
+    end
+
+
+  end
 
 

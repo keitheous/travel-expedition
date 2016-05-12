@@ -25,14 +25,20 @@
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3 text-center">
                       <div class="emergency">
-                        <% if @numbers.size == 1 %>
-                          <p>Emergency number: <%=@numbers.first %></p>
-                        <% elsif @numbers.size == 3 %>
-                          <p>Ambulance:<%=@numbers[0]%></p>
-                          <p>Fire:<%=@numbers[1]%></p>
-                          <p>Police:<%=@numbers[2]%></p>
-                        <% else %>
-                          <p>No emergency numbers find</p>
+                        <% if @numbers.error? == false  %>
+                          <% if @numbers.dispatch != ""%>
+                              <p>Emergency number: <%=@numbers.dispatch %></p>
+                          <% else %>
+                            <%if @numbers.ambulance != "" %>
+                              <p>Ambulance:<%=@numbers.ambulance%></p>
+                            <% end %>
+                            <%if @numbers.fire != ""%>
+                              <p>Fire:<%=@numbers.fire%></p>
+                            <% end %>
+                            <%if @numbers.police != ""%>
+                              <p>Police:<%=@numbers.police%></p>
+                            <% end %>
+                          <% end %>
                         <% end %>
                       </div>
                         <br />
@@ -43,36 +49,6 @@
         </div>
     </div>
 <!-- </top wrapper> -->
-
-<!-- <div class="banner">
-  <a class="add_card" href="/new">ADD CARD</a>
-  add_card or add_card_btn
-</div> -->
-<!--
-<div class="country_info">
-  <div class="country">
-    <h2 class="country-name"><%= @country.name %></h2>
-    <img src="https://s-media-cache-ak0.pinimg.com/236x/05/77/c8/0577c800b879b8b5affdbb2df364e24c.jpg">
-  </div>
-  <div class="emergency">
-    <h3><font color="red"> emergency contact </font></h3>
-    <% if @numbers.size == 1 %>
-      <p>Emergency number: <%=@numbers.first %></p>
-    <% elsif @numbers.size == 3 %>
-      <p>Ambulance:<%=@numbers[0]%></p>
-      <p>Fire:<%=@numbers[1]%></p>
-      <p>Police:<%=@numbers[2]%></p>
-    <% else %>
-      <p>No emergency numbers find</p>
-    <% end %>
-  </div>
-  <div class="currency_weather">
-    <div class="currencyApi" data-base-name="<%= @base%>" data-dest-name="<%= @dest %>"
-      <h3>Currency Api</h3>
-    </div>
-      <img src="https://s-media-cache-ak0.pinimg.com/236x/05/77/c8/0577c800b879b8b5affdbb2df364e24c.jpg">
-  </div>
-</div> -->
 
 <!-- <New Card Form (Hidden Until Click)> -->
 <div class="new_card">
@@ -144,34 +120,36 @@
 </div> -->
 
 <div class="board">
-  <h1> Board </h1>
-    Sort by:
-    <span class="tags" data-tag-name="all"><a href="">All</a></span>
-    <% @tags.each do |tag| %>
-      <span class="tags" data-tag-name="<%= tag.name%>"><a href=""><%= tag.name%></a></span>
-    <% end %>
+  <h1><%= @country.name %></h1>
+    <div class="board-content">
+      Sort by: <br><br>
+      <button class="tags btn btn-secondary" data-tag-name="all"><a href="">All</a></button>
+      <% @tags.each do |tag| %>
+        <button class="tags btn btn-secondary" data-tag-name="<%= tag.name%>"><a href=""><%= tag.name%></a></button>
+      <% end %>
 
-  <br>
-  <br>
-  <div class="content">
-    <% @cards.each do |card| %>
-      <% tags = []%>
-      <% card.tags.each do |tag| %>
-        <% tags.push(tag.name) %>
-      <%end%>
-      <% classnames = tags.join(" ") %>
-        <div class="card <%= classnames%>">
-          <h2><%= card.title %></h2>
-          <!-- remember to fix card size and image size -->
-          <span><img src="<%= card.image %>" height="150" width="150"></span>
-          <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
-          <input type="checkbox" class="card-tick" id="<%=card.id%>"></input>
-          <p><a href="<%= card.source %>">Link</a></p>
-          <% card.tags.each do |cardtag| %>
-            <span class="tag"><%= cardtag.name %></span>
-          <% end %>
-        </div>
-    <%  end %>
+    <br>
+    <br>
+    <div class="content">
+      <% @cards.each do |card| %>
+        <% tags = []%>
+        <% card.tags.each do |tag| %>
+          <% tags.push(tag.name) %>
+        <%end%>
+        <% classnames = tags.join(" ") %>
+          <div class="card <%= classnames%>">
+            <h2><%= card.title %></h2>
+            <!-- remember to fix card size and image size -->
+            <span><img src="<%= card.image %>" height="150" width="150"></span>
+            <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
+            <input type="checkbox" class="card-tick" id="<%=card.id%>"></input>
+            <p><a href="<%= card.source %>">Link</a></p>
+            <% card.tags.each do |cardtag| %>
+              <span class="tag"><%= cardtag.name %></span>
+            <% end %>
+          </div>
+      <%  end %>
+    </div>
   </div>
 </div>
 
@@ -326,40 +304,21 @@ $( document ).ready(function() {
 </script>
 
 <style>
-.currency_weather{
-    padding-left: 40px;
-    display:inline-block;
-    width: 30%;
-}
 
-.country_info{
-  padding: 0;
-  margin: 0;
-  border-bottom: solid 3px;
-}
-.emergency{
-  margin: 0;
-  width: 30%;
-  display: inline-block;
-  margin: 0px;
-}
-.country{
-  width: 30%;
-  display: inline-block;
-}
-
-.content {
-  margin: 0;
-  padding: 5px 5px;
-}
 .card {
   float: left;
+  max-width: 31%;
   margin: 0 0 10px 10px;
   border: 2px solid red;
   padding: 40px 80px;
 }
 .card #img {
   text-align: center;
+
+.card-tick {
+  display: block;
+  vertical-align: top;
+}
 }
 
 </style>
