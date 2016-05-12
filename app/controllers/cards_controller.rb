@@ -12,6 +12,7 @@ class CardsController < ApplicationController
     # get all the cards.countries belongs to the user
     @countries = []
 
+     # @all_countries = @countries.all
     @cards.each do |card|
       card.countries.each do |country|
         if @countries.index(country) == nil
@@ -19,6 +20,7 @@ class CardsController < ApplicationController
         end
       end
     end
+    
 
   end
 
