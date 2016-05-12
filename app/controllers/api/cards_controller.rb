@@ -46,9 +46,11 @@ module Api
     end
 
     def complete
-      card = Card.find(params[:id])
-      card.complete = params[:status]
-      card.save
+      @card = Card.find(params[:card].to_i)
+      @card.complete = params[:status]
+      @card.save
+
+      render json: @card.to_json
     end
 
   

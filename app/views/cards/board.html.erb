@@ -15,7 +15,7 @@
                           </a>
                         </div>
                         <div class="name">
-                            <h4><%= @country.name %></h4>
+                            <h4 id="country-name-id"><%= @country.name %></h4>
                             <div class="currency" data-base-name="<%= @base%>" data-dest-name="<%= @dest %>"
                               <p>Currenct Conversion: </p>
                             </div>
@@ -177,7 +177,7 @@ $( document ).ready(function() {
   $(".new_card_submit").on('click',function(event){
 
       event.preventDefault();
-      var country = $('.country-name').text();
+      var countryName = $('#country-name-id').text();
       debugger
       var name = $("#name").val();
       var image = $("#image").val();
@@ -204,7 +204,7 @@ $( document ).ready(function() {
         url:"/api/card/create",
         method: 'post',
         data: {
-          country: country,
+          country: countryName,
           title: name,
           image: image,
           source: source,
@@ -279,8 +279,6 @@ $( document ).ready(function() {
   $('.content').on('click','.card-tick',function(event){
   status = $(this).is(':checked'); 
   id = event.toElement.id; 
-  console.log("jhgkjghk")
-
   $.ajax({
     url: "/api/card/complete",
     method: 'post',
@@ -288,7 +286,6 @@ $( document ).ready(function() {
       card: id,
       status: status
     }}).done(function(event){
-      console.log('event');
     });
   });
 });
