@@ -46,14 +46,14 @@
             </li>
 
             <li>
-                <% if session[:about] == "about"%>
-                  <a href="/profile" class="btn btn-simple">Profile</a>
+                <% if session[:id] && session[:about] == "about"%>
+                    <a href="/profile" class="btn btn-simple">Profile</a>
                 <% else %>
-                  <a href="/about" class="btn btn-simple">About</a>
+                    <a href="/about" class="btn btn-simple">About</a>
                 <% end %>
             </li>
             <li>
-                <% if session[:contact] == "contact"%>
+                <% if session[:id] && session[:contact] == "contact"%>
                   <a href="/profile" class="btn btn-simple">Profile</a>
                 <% else %>
                   <a href="/contact" class="btn btn-simple">Contact</a>
