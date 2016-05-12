@@ -29,9 +29,15 @@
                           <% if @numbers.dispatch != ""%>
                               <p>Emergency number: <%=@numbers.dispatch %></p>
                           <% else %>
-                            <p>Ambulance:<%=@numbers.ambulance%></p>
-                            <p>Fire:<%=@numbers.fire%></p>
-                            <p>Police:<%=@numbers.police%></p>
+                            <%if @numbers.ambulance != "" %>
+                              <p>Ambulance:<%=@numbers.ambulance%></p>
+                            <% end %>
+                            <%if @numbers.fire != ""%>
+                              <p>Fire:<%=@numbers.fire%></p>
+                            <% end %>
+                            <%if @numbers.police != ""%>
+                              <p>Police:<%=@numbers.police%></p>
+                            <% end %>
                           <% end %>
                         <% end %>
                       </div>
@@ -43,36 +49,6 @@
         </div>
     </div>
 <!-- </top wrapper> -->
-
-<!-- <div class="banner">
-  <a class="add_card" href="/new">ADD CARD</a>
-  add_card or add_card_btn
-</div> -->
-<!--
-<div class="country_info">
-  <div class="country">
-    <h2 class="country-name"><%= @country.name %></h2>
-    <img src="https://s-media-cache-ak0.pinimg.com/236x/05/77/c8/0577c800b879b8b5affdbb2df364e24c.jpg">
-  </div>
-  <div class="emergency">
-    <h3><font color="red"> emergency contact </font></h3>
-    <% if @numbers.size == 1 %>
-      <p>Emergency number: <%=@numbers.first %></p>
-    <% elsif @numbers.size == 3 %>
-      <p>Ambulance:<%=@numbers[0]%></p>
-      <p>Fire:<%=@numbers[1]%></p>
-      <p>Police:<%=@numbers[2]%></p>
-    <% else %>
-      <p>No emergency numbers find</p>
-    <% end %>
-  </div>
-  <div class="currency_weather">
-    <div class="currencyApi" data-base-name="<%= @base%>" data-dest-name="<%= @dest %>"
-      <h3>Currency Api</h3>
-    </div>
-      <img src="https://s-media-cache-ak0.pinimg.com/236x/05/77/c8/0577c800b879b8b5affdbb2df364e24c.jpg">
-  </div>
-</div> -->
 
 <!-- <New Card Form (Hidden Until Click)> -->
 <div class="new_card">
