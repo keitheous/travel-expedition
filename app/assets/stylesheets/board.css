@@ -8,19 +8,6 @@
   display: inline-block;
 }
 
-/*.username{
-     position: relative;
-    left: 160px;
-    top: 160px;
-}*/
-
-/*.add_card_btn{
-    position: inherit;
-    width: 79%;
-    text-align: right;
-    top: 160px;
-    height: 140px;
-}*/
 .profile_image {
   height: 100px;
   width: 100px;
@@ -38,47 +25,6 @@
   height: 100px;
   border-radius: 50px;
 }
-
-/*
-.username {
-  margin-left: 20px;
-  line-height: 50px;
-  position: absolute;
-  left:200px;
-  top:60px;
-  font-size: 1.5em;
-  color:yellow;
-  font-weight: bold;
-}
-.add_card_btn {
-  border-radius: 5px;
-  background-color: white;
-  text-decoration: none;
-  color:black;
-  position:absolute;
-  right:100px;
-  top:60px;
-  height: 50px;
-  line-height: 50px;
-  width: 150px;
-  text-align: center;
-  font-weight: bold;
-}
-*/
-
-
-.container {
-  /*margin-top: 50px;  moved up*/
-}
-/*.card {
-  height: 200px;
-  width:150px;
-  border:1px solid black;
-  border-radius: 5px;
-  float:left;
-  margin:10px;
-  padding:5px;
-}*/
 
 
 

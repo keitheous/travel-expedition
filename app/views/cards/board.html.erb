@@ -99,15 +99,12 @@
     <br>
     <br>
     <div class="content">
+      
       <% @cards.each do |card| %>
         <% tags = []%>
         <% card.tags.each do |tag| %>
           <% tags.push(tag.name) %>
         <%end%>
-
-
-
-
         <% classnames = tags.join(" ") %>
 
           <div class="card <%= classnames%>">
@@ -126,7 +123,7 @@
   </div>
 </div>
 
-
+<!-- 
 
 <div class="container">
   <div class="card-container">
@@ -154,7 +151,7 @@
   
   <% end %>
 </div>
-</div>
+</div> -->
 
 
 
