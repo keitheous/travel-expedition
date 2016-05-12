@@ -76,7 +76,7 @@
 
   <br>
   <br>
-  <div class="body">
+  <div class="content">
     <% @cards.each do |card| %>
       <% tags = []%>
       <% card.tags.each do |tag| %>
@@ -166,6 +166,26 @@ $( document ).ready(function() {
         $(".new_card").hide();
         console.log( "yay" );
         console.log(response);
+        debugger
+        var templateString = $("#card-template").html();
+        var templateFunction = Handlebars.compile(templateString);
+
+        //for loop for tag_name to be displayed in string on browser
+        var responseArr = response[2];
+        var tagsArr = [];
+        for (var i=0; i<responseArr.length ; i++ ){
+          tagsArr.push(responseArr[i].name);
+        }
+        var tagsString = tagsArr.join(" ");
+        // find the country id in country table
+        var html = templateFunction({
+          tag_name: tagsString,
+          card_title: response[0].title,
+          card_source: response[0].source,
+          card_image: response[0].image
+        });
+        $newCard = $(html);
+        $(".content").append($newCard);
         // what do we do with the response
         // hide the add new card form
 
@@ -234,7 +254,7 @@ $( document ).ready(function() {
   display: inline-block;
 }
 
-.body {
+.content {
   margin: 0;
   padding: 5px 5px;
 }
