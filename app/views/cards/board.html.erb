@@ -16,8 +16,6 @@
                         </div>
                         <div class="name">
                             <h4 id="country-name-id"><%= @country.name %></h4>
-                            <div class="currency" data-base-name="<%= @base%>" data-dest-name="<%= @dest %>"
-                              <p>Currency Conversion: </p>
                             </div>
                         </div>
                     </div>
@@ -40,6 +38,7 @@
                             <% end %>
                           <% end %>
                         <% end %>
+                        <p>Currency Conversion:<div class="currency" data-base-name="<%= @base%>" data-dest-name="<%= @dest %>"</p>
                       </div>
                         <br />
                         <a class="btn add_card" href="/new"><i class="fa fa-pencil"></i>ADD NEW CARD</a>
