@@ -122,7 +122,7 @@
 <script>
 $( document ).ready(function() {
 
-  $(".new_card").hide();
+  // $(".new_card").hide();
   $(".add_card").on('click',function(event){
     event.preventDefault();
     $(".new_card").show();
@@ -227,6 +227,12 @@ $( document ).ready(function() {
       $('.currency').append($newElem);
     });
   }
+
+  $("#card-board").on('click',function(event){ 
+    var that = this;
+    console.log(this);
+  });
+
 
 });
 </script>
