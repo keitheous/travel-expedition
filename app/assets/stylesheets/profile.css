@@ -6,6 +6,11 @@
 
 .new_card {
   display: inline-block; 
+  display: center;
+
+    display: table;
+    /* position: relative; */
+    margin: auto;
 }
 
 /*.username{

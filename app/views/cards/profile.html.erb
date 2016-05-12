@@ -68,6 +68,37 @@
      </div>
 
 
+
+<div class="card">
+  <img class="card-img-top" src="https://placeholdit.imgix.net/~text?txtsize=28&bg=0099ff&txtclr=ffffff&txt=300%C3%97300&w=300&h=300&fm=png" alt="Card image cap">
+  <div class="card-block">
+    <h4 class="card-title">Card title</h4>
+    <p class="card-text">Some quick example text to build on
+    the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Button</a>
+  </div>
+</div>
+
+
+
+
+
+<% @countries.each do |country| %>
+<div class="">
+  <img class="card-img-top" src="https://placeholdit.imgix.net/~text?txtsize=28&bg=0099ff&txtclr=ffffff&txt=300%C3%97300&w=300&h=300&fm=png" alt="Card image cap">
+  <div class="card-block">
+    <h4 class="card-title"><a href="/board?country_id=<%= country.id%>"> </a></h4>
+    <p class="card-text"><p>cards <span class="cards-number"><%= (country.cards & @cards).size%></span></p></p>
+    <a href="#" class="btn btn-primary">Button</a>
+  </div>
+</div>
+<% end %>
+
+
+
+
+
+
 <!-- List Country Boards on User Profile -->
 <div class="container">
   <% @countries.each do |country| %>
