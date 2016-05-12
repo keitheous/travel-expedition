@@ -1,10 +1,11 @@
 <div class="banner">
-  <span id="user">user profile</span>
-  <span id="add_card"><button>add card</button></span>
+  <a class="add_card" href="/new">ADD CARD</a>
+  <!-- add_card or add_card_btn -->
 </div>
+
 <div class="country_info">
   <div class="country">
-    <h2><%= @country.name %></h2>
+    <h2 class="country-name"><%= @country.name %></h2>
     <img src="https://s-media-cache-ak0.pinimg.com/236x/05/77/c8/0577c800b879b8b5affdbb2df364e24c.jpg">
   </div>
   <div class="emergency">
@@ -29,42 +30,157 @@
   </div>
 </div>
 
-<h1> Board </h1>
-  Sort by:
-  <span class="tags" data-tag-name="all"><a href="">All</a></span>
-  <% @tags.each do |tag| %>
-    <span class="tags" data-tag-name="<%= tag.name%>"><a href=""><%= tag.name%></a></span>
-  <% end %>
+<div class="new_card">
+  <h1>New Card</h1>
 
-<br>
-<br>
-<div class="body">
-  <% @cards.each do |card| %>
-    <% tags = []%>
-    <% card.tags.each do |tag| %>
-      <% tags.push(tag.name) %>
-    <%end%>
-    <% classnames = tags.join(" ") %>
-      <div class="card <%= classnames%>">
-        <h2><%= card.title %></h2>
-        <!-- remember to fix card size and image size -->
-        <span><img src="<%= card.image %>" height="150" width="150"></span>
-        <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
-        <p><a href="<%= card.source %>">Link</a></p>
-        <% card.tags.each do |cardtag| %>
-          <span class="tag"><%= cardtag.name %></span>
-        <% end %>
-      </div>
+  <form action="/cards" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-  <%  end %>
+    <!-- <label for="">Country</label>
+    <input class="country_selector" type="text" name="country" id="country"> -->
+
+    <label for="">Title</label>
+    <input type="text" name="title" id="name" >
+
+    <label for="">Image Url</label>
+    <input type="text" name="image" id="image">
+
+    <label for="">Source Url</label>
+    <input type="text" name="source" id="source">
+
+    <label for="">Tags</label>
+
+
+
+      <input type="checkbox" class="checkbox-tags" name="food" id="food">Food
+      <input type="checkbox" class="checkbox-tags" name="accommodation" id="accommodation">Accommodation
+      <input type="checkbox" class="checkbox-tags" name="transport" id="transport">Transport
+      <input type="checkbox" class="checkbox-tags" name="culture" id="culture">Culture
+      <input type="checkbox" class="checkbox-tags" name="entertainment" id="entertainment">Entertainment
+      <input type="checkbox" class="checkbox-tags" name="shopping" id="shopping">Shopping
+      <input type="checkbox" class="checkbox-tags" name="nature" id="nature">Nature
+      <input type="checkbox" class="checkbox-tags" name="free" id="free">Free
+
+    <p><input type="submit" value="Submit" id="multiple" class="new_card_submit"></p>
+  </form>
+
+</div>
+
+<div class="board">
+  <h1> Board </h1>
+    Sort by:
+    <span class="tags" data-tag-name="all"><a href="">All</a></span>
+    <% @tags.each do |tag| %>
+      <span class="tags" data-tag-name="<%= tag.name%>"><a href=""><%= tag.name%></a></span>
+    <% end %>
+
+  <br>
+  <br>
+  <div class="body">
+    <% @cards.each do |card| %>
+      <% tags = []%>
+      <% card.tags.each do |tag| %>
+        <% tags.push(tag.name) %>
+      <%end%>
+      <% classnames = tags.join(" ") %>
+        <div class="card <%= classnames%>">
+          <h2><%= card.title %></h2>
+          <!-- remember to fix card size and image size -->
+          <span><img src="<%= card.image %>" height="150" width="150"></span>
+          <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
+          <p><a href="<%= card.source %>">Link</a></p>
+          <% card.tags.each do |cardtag| %>
+            <span class="tag"><%= cardtag.name %></span>
+          <% end %>
+        </div>
+    <%  end %>
+  </div>
 </div>
 
 <!-- temporary, will be moved into jS file -->
-<script>
+<script id="card-template" type="text/x-handlebars-template">
+  <div class="card {{tag_name}}">
+    <h2>{{card_title}}</h2>
+    <!-- remember to fix card size and image size -->
+    <span><img src="{{card_image}}" height="150" width="150"></span>
+    <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
+    <p><a href="{{card_source}}">Link</a></p>
+    <!-- // add file -->
+  </div>
 
-  $('.tags').on('click',function(event){
+  <!-- <a href="/board?country_id={{country_id}}>">
+    <div class="card">
+      <div class="country-name">{{country_name}}</div>
+      <img src="" alt="">
+      <div>
+        <p>cards <span>{{card_number}}</span></p>
+      </div>
+    </div>
+  </a> -->
+</script>
+
+<script>
+$( document ).ready(function() {
+
+  $(".new_card").hide();
+  $(".add_card").on('click',function(event){
+    event.preventDefault();
+    $(".new_card").show();
+  });
+
+  $(".new_card_submit").on('click',function(event){
+
+      event.preventDefault();
+      var country = $('.country-name').text();
+      var name = $("#name").val();
+      var image = $("#image").val();
+      var source = $("#source").val();
+
+      var tags = $('.checkbox-tags:checked');
+      var tagsArr = [];
+      for(var i=0; i<tags.length; i++) {
+        tagsArr.push(tags[i].id);
+      }
+      // console.log(tagsArr);
+      //
+      // console.log(country);
+      // console.log(name);
+      // console.log(image);
+      // console.log(source);
+      // var foodanddrink = $('#foodanddrink').val();
+      // var accommodation = $('#accommodation').val();
+      // var multiple = $('multiple').val();
+      // console.log(foodanddrink);
+      // console.log(accommodation);
+      // console.log(multiple);
+      $.ajax({
+        url:"/api/card/create",
+        method: 'post',
+        data: {
+          country: country,
+          title: name,
+          image: image,
+          source: source,
+          tags: tagsArr.join(',')
+      }}).done(function( response ) {
+        $(".new_card").hide();
+        console.log( "yay" );
+        console.log(response);
+        // what do we do with the response
+        // hide the add new card form
+
+        // update the cards list without refresh the page
+      });
+  });
+
+    // $(".new_card_submit").on('click',function(event){
+    //     event.preventDefault();
+
+
+    $('.tags').on('click',function(event){
     event.preventDefault();
     var tagName = $(this).data('tag-name');
+    // var tagName = $(this).context.id;
     console.log(tagName);
     if (tagName == 'all') {
       $('.card').show();
@@ -92,10 +208,9 @@
     });
   }
 
-  //emergency api
-
+});
 </script>
-<!-- temporary, will be moved into css file -->
+
 <style>
 .currency_weather{
     padding-left: 40px;
@@ -118,11 +233,6 @@
   width: 30%;
   display: inline-block;
 }
-.banner{
-  background-color: grey;
-  width: 100%;
-  height: 40px;
-}
 
 .body {
   margin: 0;
@@ -137,11 +247,5 @@
 .card #img {
   text-align: center;
 }
-#user {
-  float: left;
-}
 
-#add_card {
-  float: right;
-}
 </style>
