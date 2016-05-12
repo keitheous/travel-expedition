@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
   end
 
   def signedin
-    user = User.find_by(name: "#{params[:username].downcase}" )
+    user = User.find_by(name: "#{params[:name].downcase}" )
       if user && user.authenticate(params[:password])
         session[:id] = user.id
         redirect_to '/profile'

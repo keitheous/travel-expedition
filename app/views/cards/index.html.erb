@@ -1,5 +1,123 @@
-<h1>Travel Expedition List</h1>
-<div class="buttons">
-  <a href="/signup"><button>Sign Up</button></a>
-  <a href="/login"><button>Login</button></a>
+
+<div class="wrapper">
+        <div class="header register-background"> 
+            <div class="filter-black"></div>
+                <div class="container">
+                    <div class="row">
+                      </div>
+                        <div class="text-vertical-center"><h1><strong>Travel Bookmarks</strong> while on the Road.</h1>
+                        <p>
+                            A bookmarking service that is built for travellers. Use RoadNotes while you're at home, and actually find the interesting places when you're <strong>on the road</strong></a>.
+                        </p>
+                          <!-- Button trigger modal for Sign Up -->
+                          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                            Sign Up
+                          </button>
+                                  <!-- Button trigger modal for Log In -->
+                          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
+                            Log In
+                          </button>
+                        </div>
+                    </div>
+                </div>  
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal for Sign Up -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel1">Sign Up</h4>
+      </div>
+      <div class="modal-body">
+                <div class="ui-widget">
+  <form role="form" action="/signup" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    
+    <div class="form-group">
+      <label for="">Username</label>
+        <input class="form-control" type="text" name="name" placeholder="Username...">
+    </div>
+
+    <div class="form-group">
+        <label for="">Email</label>
+        <input type="text" name="email" placeholder="Email..." class="form-control" id="">
+    </div>
+
+    <div class="form-group">
+        <label for="">Password</label>
+        <input type="password" name="password" placeholder="Password..." class="form-control" id="">
+    </div>
+
+    <div class="form-group">
+        <label for="">Home Country</label>
+        <input type="text" name="country" placeholder="Country..." class="country_selector form-control" id="">
+    </div>
+    
+  <button>join</button>
+  
+  <% if session[:username] == false %>
+    <div>invalid user name</div>
+  <% end %>
+  <% if session[:email] == false %>
+    <div>invalid email address</div>
+  <% end %>
+  <% if session[:country] == false %>
+    <div>invalid country name</div>
+  <% end %>
+
+  </form>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Sign Up Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Log In -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel1">Log In</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Form in Modal for Log In starts here-->
+        <div class="ui-widget">
+  <form role="form" action="/login" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    
+    <div class="form-group">
+      <label for="">Username</label>
+        <input class="form-control" type="text" name="name" placeholder="Username...">
+    </div>
+
+    <div class="form-group">
+        <label for="">Password</label>
+        <input type="password" name="password" placeholder="Password..." class="form-control" id="">
+    </div>
+
+      <p><button type="submit" class="btn">Login!</button></p>
+  </form>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Log In Now</button>
+      </div>
+    </div>
+  </div>
 </div>
