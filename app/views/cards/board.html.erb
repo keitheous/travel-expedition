@@ -142,25 +142,24 @@
 
 <!-- temporary, will be moved into jS file -->
 <script id="card-template" type="text/x-handlebars-template">
-  <div class="card {{tag_name}}">
-    <h2>{{card_title}}</h2>
-    <!-- remember to fix card size and image size -->
-    <span><img src="{{card_image}}" height="150" width="150"></span>
-    <!-- <span id="img"><img src="/images/default.jpg" height="42" width="42"></span> -->
-    <input type="checkbox" class="card-tick" id="{{card_id}}"></input>
-    <p><a href="{{card_source}}">Link</a></p>
-    <!-- // add file -->
-  </div>
-
-  <!-- <a href="/board?country_id={{country_id}}>">
-    <div class="card">
-      <div class="country-name">{{country_name}}</div>
-      <img src="" alt="">
-      <div>
-        <p>cards <span>{{card_number}}</span></p>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="card {{tag_name}}">
+        <div class="panel-image">
+          <span><img class="panel-image-preview" src="{{card_image}}"></span>
+          <label for="toggle-4"></label>
+        </div>
+        <input type="checkbox" id="toggle-4 {{card_id}}" checked class="panel-image-toggle card-tick">
+          <div class="panel-body">
+            <h4>{{card_title}}</h4>
+            <span class="glyphicon glyphicon-ok-circle"></span>
+          </div>
+          <div class="panel-footer text-center">
+            <span class="glyphicon"><a href="{{card_source}}">Link To Source</a></span>
+          </div>
       </div>
     </div>
-  </a> -->
+  </div>
 </script>
 
 <script>
