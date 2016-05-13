@@ -101,30 +101,27 @@
 <!-- /Tag Sorting End -->
 
 <div class="content">
-  <div class="container">
-      <% @cards.each_slice(3) do |cards| %>
-        <div class="row">
-            <% @cards.each do |card| %>
-              <div class="col-md-4">
-                <div class="panel panel-default">
+  <div class="container"> 
+      <% @cards.each do |card| %>
 
+                <% tags = []%>
+                <% card.tags.each do |tag| %>
+                  <% tags.push(tag.name) %>
+                <%end%>
+                <% classnames = tags.join(" ") %>
 
-                  <% tags = []%>
-                  <% card.tags.each do |tag| %>
-                    <% tags.push(tag.name) %>
-                  <%end%>
-                  <% classnames = tags.join(" ") %>
+                <div class="panel panel-default box ui-cardfk <%= classnames%>">
 
-                  <div class="card <%= classnames%>">
+                  <div class="card top">
                     <div class="panel-image">
                     <span><img class="panel-image-preview" src="<%= card.image %>"></span>
-                    <label for="toggle-4"></label>
+                    <!-- <label for="toggle-4"></label> -->
                     </div>
-                    <input type="checkbox" id="toggle-4 <%=card.id%>" checked class="panel-image-toggle card-tick">
-                    <div class="panel-body">
-                        <h4><%= card.title %></h4>
-                        <span class="glyphicon glyphicon-ok-circle"></span>
-                    </div>
+                      <div class="panel-body bottom" id="<%= card.id %>">
+
+                          <h4><%= card.title %></h4>
+                          <span class="glyphicon glyphicon-ok-circle"></span>
+                      </div>
                     <div class="panel-footer text-center">
                         <span class="glyphicon"><a href="<%= card.source %>">Link To Source</a></span>
                     </div>
@@ -133,15 +130,10 @@
                       <span class="tag"><%= cardtag.name %></span>
                     <% end %>
                   </div>
-                </div>
-              </div>
-            <% end %>
-        </div>
+                </div>        
       <% end %>
   </div>
 </div>
-
-
 
 
 <!-- temporary, will be moved into jS file -->
@@ -245,18 +237,49 @@ $( document ).ready(function() {
     //     event.preventDefault();
 
 
-    $('.tags').on('click',function(event){
+  //   $('.tags').on('click',function(event){
+  //   event.preventDefault();
+  //   var tagName = $(this).data('tag-name');
+  //   // var tagName = $(this).context.id;
+  //   console.log(tagName);
+  //   if (tagName == 'all') {
+  //     $('.card').show();
+  //   } else {
+  //      $('.card').hide();
+  //     $("."+tagName).show();
+  //   }
+  // });
+
+
+
+$('.tags').on('click',function(event){
     event.preventDefault();
     var tagName = $(this).data('tag-name');
     // var tagName = $(this).context.id;
     console.log(tagName);
     if (tagName == 'all') {
-      $('.card').show();
+      $('.ui-cardfk').show();
+      // $('.card').parent().show();
     } else {
-       $('.card').hide();
-      $("."+tagName).show();
+       $('.ui-cardfk').hide();
+
+       // need a loop here to loop over all cards 
+
+        // if ($('.card').css('display') == 'none') {
+        //   $('.card').parents().eq(1).hide();
+        // }
+
+        $('.' + tagName).show();
     }
   });
+
+
+
+
+
+
+
+
 
   // currency exchange API
   var base = $('.currency').data("base-name");
@@ -288,6 +311,13 @@ $( document ).ready(function() {
     }}).done(function(event){
     });
   });
+});
+
+
+$('.panel').on('click', function() {
+  $parent_box = $(this).closest('.box');
+  // $parent_box.siblings().find('.bottom').slideUp();
+  $parent_box.find('.bottom').slideToggle(500, 'swing');
 });
 
 </script>
