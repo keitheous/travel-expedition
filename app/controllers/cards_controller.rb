@@ -1,3 +1,22 @@
+# class EmergencyNumber
+
+#   def dispatch
+#   end
+
+#   def ambulance
+#   end
+
+#   def fire
+#   end
+
+#   def police
+#   end
+
+#   def error?
+#     false
+#   end
+# end
+
 class CardsController < ApplicationController
 
   def index
