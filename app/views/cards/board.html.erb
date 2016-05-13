@@ -106,19 +106,19 @@
         <div class="row">
             <% cards.each do |card| %>
               <div class="col-md-4">
-                <div class="panel panel-default">
+                <div class="panel panel-default box">
                   <% tags = []%>
                   <% card.tags.each do |tag| %>
                     <% tags.push(tag.name) %>
                   <%end%>
                   <% classnames = tags.join(" ") %>
 
-                  <div class="card <%= classnames%>">
+                  <div class="card <%= classnames%> top">
                     <div class="panel-image">
                     <span><img class="panel-image-preview" src="<%= card.image %>"></span>
                     <!-- <label for="toggle-4"></label> -->
                     </div>
-                      <div class="panel-body" id="<%= card.id %>" style="display: none;">
+                      <div class="panel-body bottom" id="<%= card.id %>">
 
                           <h4><%= card.title %></h4>
                           <span class="glyphicon glyphicon-ok-circle"></span>
@@ -176,7 +176,6 @@ $( document ).ready(function() {
 
       event.preventDefault();
       var countryName = $('#country-name-id').text();
-      debugger
       var name = $("#name").val();
       var image = $("#image").val();
       var source = $("#source").val();
@@ -211,7 +210,6 @@ $( document ).ready(function() {
         $(".new_card").hide();
         console.log( "yay" );
         console.log(response);
-        debugger
         var templateString = $("#card-template").html();
         var templateFunction = Handlebars.compile(templateString);
 
@@ -249,9 +247,9 @@ $( document ).ready(function() {
     // var tagName = $(this).context.id;
     console.log(tagName);
     if (tagName == 'all') {
-      $('.card').show();
+      $('.panel').show();
     } else {
-       $('.card').hide();
+       $('.panel').hide();
       $("."+tagName).show();
     }
   });
@@ -289,13 +287,11 @@ $( document ).ready(function() {
 });
 
 
-
-$(".panel, .panel-body").click(function() {
-  var card_id = $(".panel-body").attr("id");
-  console.log(card_id);
-  $(card_id).toggle();
+$('.panel').on('click', function() {
+  $parent_box = $(this).closest('.box');
+  $parent_box.siblings().find('.bottom').slideUp();
+  $parent_box.find('.bottom').slideToggle(500, 'swing');
 });
-
 
 </script>
 
