@@ -72,15 +72,15 @@
   </div>
 
   <%= yield %>
-
-    <h6 style="padding-top:150px; text-align:center; background-color:white; opacity: 0.9;">&copy; 2016, made with <i class="fa fa-heart heart" style="color:red; font-size:1.5em;"></i> by Trvlm8s</h6>
+    <!-- <%#= request.path %> -->
+    <h6 style="<%= 'padding-top:150px;' if request.path != '/' %> text-align:center; background-color:white; opacity: 0.9;">&copy; 2016, made with <i class="fa fa-heart heart" style="color:red; font-size:1.5em;"></i> by Trvlm8s</h6>
   </div>
 
 </body>
 <!-- <div class="footer register-footer text-center">
                     <h6>&copy; 2016, made with <i class="fa fa-heart heart"></i> by Trvlm8s</h6>
             </div> -->
-            
+
 
 
 
