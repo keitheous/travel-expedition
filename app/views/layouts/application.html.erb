@@ -46,6 +46,14 @@
             </li>
 
             <li>
+
+            </li>
+              <% if session[:id] == nil && session[:index] == nil %>
+                <% if session[:about] == "about" || session[:contact] == "contact" %>
+                  <a href="/" class="btn btn-simple">SignUp/Login</a>
+                <% end %>
+              <% end %>
+            <li>
                 <% if session[:id] && session[:about] == "about"%>
                     <a href="/profile" class="btn btn-simple">Profile</a>
                 <% else %>
@@ -77,12 +85,4 @@
   </div>
 
 </body>
-<!-- <div class="footer register-footer text-center">
-                    <h6>&copy; 2016, made with <i class="fa fa-heart heart"></i> by Trvlm8s</h6>
-            </div> -->
-
-
-
-
-  <!--  Plugins -->
 </html>

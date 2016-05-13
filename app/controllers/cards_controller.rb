@@ -3,6 +3,8 @@ class CardsController < ApplicationController
   def index
     if loggedin?
       redirect_to '/profile'
+    else
+      session[:index] = "index"
     end
   end
 
@@ -23,7 +25,7 @@ class CardsController < ApplicationController
     
     session[:about] = nil
     session[:contact] = nil
-
+    session[:index] = nil
   end
 
   def show
