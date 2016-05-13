@@ -1,9 +1,15 @@
 #register-navbar {
     position: static;
-    height: 175px;
+    height: 80px;
     background: black;
+    margin-bottom: 0;
 }
 
+.profile-background {
+  height: 300px;
+  position: relative;
+  margin-top: 0px;
+}
 
 html,
 body {

@@ -101,7 +101,7 @@
 <!-- /Tag Sorting End -->
 
 <div class="content">
-  <div class="container"> 
+  <div class="container">
       <% @cards.each_slice(3) do |cards| %>
         <div class="row">
             <% @cards.each do |card| %>
@@ -128,7 +128,7 @@
                     <div class="panel-footer text-center">
                         <span class="glyphicon"><a href="<%= card.source %>">Link To Source</a></span>
                     </div>
-                   
+
                     <% card.tags.each do |cardtag| %>
                       <span class="tag"><%= cardtag.name %></span>
                     <% end %>
@@ -179,7 +179,6 @@ $( document ).ready(function() {
 
       event.preventDefault();
       var countryName = $('#country-name-id').text();
-      debugger
       var name = $("#name").val();
       var image = $("#image").val();
       var source = $("#source").val();
@@ -214,7 +213,7 @@ $( document ).ready(function() {
         $(".new_card").hide();
         console.log( "yay" );
         console.log(response);
-        debugger
+
         var templateString = $("#card-template").html();
         var templateFunction = Handlebars.compile(templateString);
 
@@ -292,5 +291,3 @@ $( document ).ready(function() {
 });
 
 </script>
-
-
