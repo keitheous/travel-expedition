@@ -104,11 +104,9 @@
   <div class="container"> 
       <% @cards.each_slice(3) do |cards| %>
         <div class="row">
-            <% @cards.each do |card| %>
+            <% cards.each do |card| %>
               <div class="col-md-4">
                 <div class="panel panel-default">
-
-
                   <% tags = []%>
                   <% card.tags.each do |tag| %>
                     <% tags.push(tag.name) %>
@@ -118,13 +116,13 @@
                   <div class="card <%= classnames%>">
                     <div class="panel-image">
                     <span><img class="panel-image-preview" src="<%= card.image %>"></span>
-                    <label for="toggle-4"></label>
+                    <!-- <label for="toggle-4"></label> -->
                     </div>
-                    <input type="checkbox" id="toggle-4 <%=card.id%>" checked class="panel-image-toggle card-tick">
-                    <div class="panel-body">
-                        <h4><%= card.title %></h4>
-                        <span class="glyphicon glyphicon-ok-circle"></span>
-                    </div>
+                      <div class="panel-body" id="<%= card.id %>" style="display: none;">
+
+                          <h4><%= card.title %></h4>
+                          <span class="glyphicon glyphicon-ok-circle"></span>
+                      </div>
                     <div class="panel-footer text-center">
                         <span class="glyphicon"><a href="<%= card.source %>">Link To Source</a></span>
                     </div>
@@ -140,8 +138,6 @@
       <% end %>
   </div>
 </div>
-
-
 
 
 <!-- temporary, will be moved into jS file -->
@@ -291,6 +287,15 @@ $( document ).ready(function() {
     });
   });
 });
+
+
+
+$(".panel, .panel-body").click(function() {
+  var card_id = $(".panel-body").attr("id");
+  console.log(card_id);
+  $(card_id).toggle();
+});
+
 
 </script>
 

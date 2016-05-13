@@ -4,6 +4,9 @@
     background: black;
 }
 
+#ui-id-1 {
+    z-index: 99999999;
+}
 
 html,
 body {
