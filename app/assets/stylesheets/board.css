@@ -30,24 +30,7 @@
   border-radius: 50px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*Cards*/
 
 .card {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -108,73 +91,7 @@
 }
 
 
-
-
-
-
-
-/*<!-- 
-
-<div class="container">
-  <div class="card-container">
-  
-  <% @countries.each_slice(3) do |countries| %>
-    
-    <div class="row">
-
-      <% countries.each do |country| %>
-
-        <div class="col-md-3">
-          
-          <a href="/board?country_id=<%= country.id%>">
-          <div class="card">
-           <div class="country-name"><%= country.name%>
-           </div>
-          </a>
-         <div>
-           <p>cards <span class="cards-number"><%= (country.cards & @cards).size%></span></p>
-         </div>
-        </div>
-      </div>
-      <% end %>
-    </div>
-  
-  <% end %>
-</div>
-</div> 
-
-
-
-
-
-<!--  <p><a href="<%= card.source %>">Link</a></p> -->
-<!--                     <input type="checkbox" class="card-tick" id="<%=card.id%>"></input>
- -->
-
-
- -->*/
-
-
-
-/*
-.card {
-  float: left;
-  max-width: 31%;
-  margin: 0 0 10px 10px;
-  border: 2px solid red;
-  padding: 40px 80px;
-}
-.card #img {
-  text-align: center;*/
-
-.card-tick {
- /* display: block;
-  vertical-align: top;*/
-}
-
-
-
-
+/*Panels*/
 
 .panel-image img.panel-image-preview {
     width: 100%;
