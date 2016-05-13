@@ -5,15 +5,13 @@
     margin-bottom: 0;
 }
 
-<<<<<<< HEAD
 #ui-id-1 {
     z-index: 99999999;
-=======
+}
 .profile-background {
   height: 300px;
   position: relative;
   margin-top: 0px;
->>>>>>> f442352a6126612f238d1379a3dff06250748cc7
 }
 
 html,

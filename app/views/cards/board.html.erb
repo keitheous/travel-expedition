@@ -101,17 +101,8 @@
 <!-- /Tag Sorting End -->
 
 <div class="content">
-<<<<<<< HEAD
   <div class="container"> 
       <% @cards.each do |card| %>
-=======
-  <div class="container">
-      <% @cards.each_slice(3) do |cards| %>
-        <div class="row">
-            <% @cards.each do |card| %>
-              <div class="col-md-4">
-                <div class="panel panel-default">
->>>>>>> f442352a6126612f238d1379a3dff06250748cc7
 
                 <% tags = []%>
                 <% card.tags.each do |tag| %>
@@ -214,10 +205,7 @@ $( document ).ready(function() {
         $(".new_card").hide();
         console.log( "yay" );
         console.log(response);
-<<<<<<< HEAD
-=======
 
->>>>>>> f442352a6126612f238d1379a3dff06250748cc7
         var templateString = $("#card-template").html();
         var templateFunction = Handlebars.compile(templateString);
 
