@@ -8,11 +8,11 @@ As a group project, it is our aim to produce a single page application website u
 
 ## Stack
 
-Ruby on Rails 
-JQuery for GUI
-Ajax for API calls
-Handlebars.js for templating
-Bootstrap 
+- Ruby on Rails 
+- JQuery for GUI
+- Ajax for API calls
+- Handlebars.js for templating
+- Bootstrap 
 
 ## APIs
 
