@@ -1,19 +1,24 @@
-# Travel Expedition
+# TrvlNotes
+(made with love by your TRVLM8S)
 
 ## Techical Requirements
 
-Make a single page application using asynchronous loading, utalising two APIs, has standard user profile flow, and users have the ability to add cards to categories in a bookmarking-like functionality.
+As a group project, it is our aim to produce a single page application website using numerous  technical skills such as **asynchronous loading**, **AJAX** calls and **JQuery**. This website also utilises two external (currency conversion & emergency contact )and 1 internal **APIs**, as well as contains **standard user profile flow** which allows users to Create, View, Update and Delete (CRUD) their profile. In addition to that, Users can add cards of a desired travel destination to this bookmarking-bucketlisting-app based on categories and sort by tags. 
+
 
 ## Stack
 
-Ruby on Rails
-jQuery
-Ajax
+Ruby on Rails 
+JQuery for GUI
+Ajax for API calls
+Handlebars.js for templating
+Bootstrap 
 
 ## Apis
 
 - Emergency Number API
 - Currency Exchange API
+- Internal Database API
 
 ## The Problem
 
