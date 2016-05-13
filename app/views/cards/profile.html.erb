@@ -1,6 +1,6 @@
 <!-- <top wrapper> -->
   <div class="wrapper">
-        <div class="profile-background"> 
+        <div class="profile-background">
             <div class="filter-black"></div>
         </div>
         <div class="profile-content section-nude">
@@ -78,7 +78,7 @@
     <% @countries.each do |country| %>
 
     <li class="list-group-item">
-       <a href="/board?country_id=<%= country.id%>"><%= country.name%></a><span class="badge"><%= (country.cards & @cards).size%></span></a>
+       <a href="/board?country_id=<%= country.id%>"><%= country.name%></a><span class="badge"><%= (country.cards & @cards).size%></span>
 
     </li>
     <% end %>
