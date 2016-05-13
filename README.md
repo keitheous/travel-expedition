@@ -14,7 +14,7 @@ Ajax for API calls
 Handlebars.js for templating
 Bootstrap 
 
-## Apis
+## APIs
 
 - Emergency Number API
 - Currency Exchange API
