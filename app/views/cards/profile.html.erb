@@ -73,69 +73,29 @@
 <div class="container"> 
   <div class="card-container">
 
-  <ul class="list-group">
+    <ul class="list-group">
 
-    <% @countries.each do |country| %>
+      <% @countries.each do |country| %>
 
-    <li class="list-group-item">
-       <a href="/board?country_id=<%= country.id%>"><%= country.name%></a><span class="badge"><%= (country.cards & @cards).size%></span></a>
-      
-    </li>
-    <% end %>
-
-  </ul>
-</div>
-</div>
-
-<!-- <div class="container">
-  <div class="card-container">
-  
-  <% @countries.each_slice(3) do |countries| %>
-    
-    <div class="row">
-
-      <% countries.each do |country| %>
-
-        <div class="col-md-3">
-          
-          <a href="/board?country_id=<%= country.id%>">
-          <div class="card">
-           <div class="country-name"><%= country.name%>
-           </div>
-          </a>
-         <div>
-           <p>cards <span class="cards-number"><%= (country.cards & @cards).size%></span></p>
-         </div>
-        </div>
-      </div>
+      <li class="list-group-item">
+         <a class="country-name" href="/board?country_id=<%= country.id%>"><%= country.name%></a><span class="badge"><%= (country.cards & @cards).size%></span>
+        
+      </li>
       <% end %>
-    </div>
-  
-  <% end %>
-</div>
-</div> -->
 
-<!-- <div class="col-xs-8 col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-image">
-                    <img src="http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52cd36aac6bed_1.JPG" class="panel-image-preview" />
-                    <label for="toggle-4"></label>
-                </div>
-                <input type="checkbox" id="toggle-4" checked class="panel-image-toggle">
-                <div class="panel-body">
-                    <h4>Best Beaches in Perth.</h4>
-                    <span class="glyphicon glyphicon-ok-circle"></span>
-                </div>
-                <div class="panel-footer text-center">
-                    <span class="glyphicon"><a href="http://#">Link To Source</a></span>
-                </div>
-            </div>
-        </div> -->
+    </ul>
+  </div>
+</div>
 
 
 <!-- <SCRIPTS> -->
 <script id="card-template" type="text/x-handlebars-template">
-  <a href="/board?country_id={{country_id}}>">
+  <li class="list-group-item">
+    <a class="country-name" href="/board?country_id={{country_id}}">{{country_name}}</a><span class="badge">{{card_number}}</span>
+        
+  </li>
+
+  <!-- <a href="/board?country_id={{country_id}}>">
     <div class="card">
       <div class="country-name">{{country_name}}</div>
       <img src="" alt="">
@@ -143,7 +103,7 @@
         <p>cards <span class="cards-number">{{card_number}}</span></p>
       </div>
     </div>
-  </a>
+  </a> -->
 </script>
 
 <script>
@@ -163,9 +123,9 @@ $( document ).ready(function() {
     if (countryNames.indexOf(country.name) != -1) {
       // if country card is displayed increase card number
       var index = countryNames.indexOf(country.name);
-      var cardNumber = Number($(".country-name").eq(index).closest(".card").find(".cards-number").text());
+      var cardNumber = Number($(".country-name").eq(index).closest(".list-group-item").find(".badge").text());
       cardNumber++;
-      $(".country-name").eq(index).closest(".card").find(".cards-number").text(cardNumber);
+      $(".country-name").eq(index).closest(".list-group-item").find(".badge").text(cardNumber);
     } else {
       // country card does not exist, create a new one
       var templateString = $("#card-template").html();
@@ -177,7 +137,7 @@ $( document ).ready(function() {
         card_number: 1 
       });
       var $newElem = $(html);
-      $('.card-container').append($newElem);
+      $('.list-group').append($newElem);
     }
   }
 

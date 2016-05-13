@@ -17,11 +17,17 @@ class ProfilesController < ApplicationController
   # about page
   def about
     session[:contact] = nil
-    session[:about] = "about" 
+    session[:about] = "about"
+    if loggedin? == false
+      session[:index] = nil
+    end
   end
   # contact page
   def contact
     session[:about] = nil
     session[:contact] = "contact"
+    if loggedin? == false
+      session[:index] = nil
+    end
   end
 end
