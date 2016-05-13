@@ -1,7 +1,7 @@
 <!-- <top wrapper> -->
   <div class="wrapper">
-        <div class="profile-background"> 
-            <div class="filter-black"></div>  
+        <div class="profile-background">
+            <div class="filter-black"></div>
         </div>
         <div class="profile-content section-nude">
             <div class="container">
@@ -25,10 +25,10 @@
                         <br />
                         <a class="btn add_card_btn" href="/new"><i class="fa fa-pencil"></i>ADD NEW CARD</a>
                     </div>
-                </div>       
+                </div>
             </div>
         </div>
-    </div> 
+    </div>
 <!-- </top wrapper> -->
 
 
@@ -47,7 +47,7 @@
     <input type="text" name="image" id="image" class="form-control" placeholder="Url to Image">
     <label for="">Source Url</label>
     <input type="text" name="source" id="source" class="form-control" placeholder="Url to Travel Tip">
-    
+
     <label>Tags</label></br>
 
       <div class="checkbox-inline"><label><input type="checkbox" class="tags" name="food" id="food">Food</label></div>
@@ -64,46 +64,35 @@
 
   </form>
 
-</div>                        
+</div>
      </div>
 <!-- </New Card Form (Hidden Until Click) END> -->
 
 
 
-<div class="container"> 
+<div class="container">
   <div class="card-container">
 
-    <ul class="list-group">
+  <ul class="list-group">
 
-      <% @countries.each do |country| %>
+    <% @countries.each do |country| %>
 
-      <li class="list-group-item">
-         <a class="country-name" href="/board?country_id=<%= country.id%>"><%= country.name%></a><span class="badge"><%= (country.cards & @cards).size%></span>
-        
-      </li>
-      <% end %>
+    <li class="list-group-item">
+       <a class="country-name" href="/board?country_id=<%= country.id%>"><%= country.name%></a><span class="badge"><%= (country.cards & @cards).size%></span>
 
-    </ul>
-  </div>
+    </li>
+    <% end %>
+
+  </ul>
+</div>
 </div>
 
 
 <!-- <SCRIPTS> -->
 <script id="card-template" type="text/x-handlebars-template">
   <li class="list-group-item">
-    <a class="country-name" href="/board?country_id={{country_id}}">{{country_name}}</a><span class="badge">{{card_number}}</span>
-        
+    <a class="country-name" href="/board?country_id={{country_id}}">{{country_name}}</a><span class="badge">{{card_number}}</span>    
   </li>
-
-  <!-- <a href="/board?country_id={{country_id}}>">
-    <div class="card">
-      <div class="country-name">{{country_name}}</div>
-      <img src="" alt="">
-      <div>
-        <p>cards <span class="cards-number">{{card_number}}</span></p>
-      </div>
-    </div>
-  </a> -->
 </script>
 
 <script>
@@ -134,7 +123,7 @@ $( document ).ready(function() {
       var html = templateFunction({
         country_id: country.id,
         country_name: country.name,
-        card_number: 1 
+        card_number: 1
       });
       var $newElem = $(html);
       $('.list-group').append($newElem);
